@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pavan Kapure | UI/UX Designer Portfolio</title>
+    <!-- Bootstrap 5.3.3 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts for Modern Typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --primary-color: #6a11cb;
+        --secondary-color: #2575fc;
+        --accent-color: #00c6ff;
+        --text-color: #333;
+        --bg-color: #f4f7f6;
+        --card-bg: rgba(255, 255, 255, 0.8);
+      }
+
+      body {
+        font-family: "Roboto", Arial, sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      .navbar-brand {
+        font-family: "Poppins", sans-serif;
+        font-weight: 700;
+      }
+
+      .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.3s ease;
+      }
+
+      .profile-img:hover {
+        transform: scale(1.1);
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color),
+          var(--secondary-color)
+        );
+        color: #fff;
+        padding: 80px 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.1),
+          transparent 70%
+        );
+        animation: rotate 20s linear infinite;
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .navbar {
+        background: transparent !important;
+        transition: background-color 0.3s;
+      }
+
+      .navbar-scrolled {
+        background: var(--primary-color) !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-link {
+        color: #fff !important;
+        font-weight: 500;
+        margin: 0 10px;
+        transition: color 0.3s;
+      }
+
+      .nav-link:hover {
+        color: var(--accent-color) !important;
+      }
+
+      .section {
+        padding: 60px 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+
+      .section.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 40px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 50%;
+        height: 4px;
+        background-color: var(--accent-color);
+      }
+
+      .card {
+        background: var(--card-bg);
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+        backdrop-filter: blur(10px);
+      }
+
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .skill-icon {
+        font-size: 2rem;
+        color: var(--primary-color);
+      }
+
+      .project-card img {
+        border-radius: 15px 15px 0 0;
+        transition: transform 0.3s;
+      }
+
+      .project-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .btn-primary {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        padding: 12px 30px;
+        font-weight: 600;
+        transition: background-color 0.3s, transform 0.3s;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        transform: translateY(-3px);
+      }
+
+      .footer {
+        background-color: var(--primary-color);
+        color: #fff;
+        padding: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">Pavan Kapure</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a href="#about" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+              <a href="#skills" class="nav-link">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a href="#projects" class="nav-link">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a href="#experience" class="nav-link">Experience</a>
+            </li>
+            <li class="nav-item">
+              <a href="#contact" class="nav-link">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+      <div class="container">
+        <img
+          src="https://randomuser.me/api/portraits/men/36.jpg"
+          alt="Profile of Pavan Kapure"
+          class="profile-img mb-4"
+        />
+        <h1 class="display-4 fw-bold">Pavan Uday Kapure</h1>
+        <p class="lead fs-4 mb-4">Web Designer & Front-End Developer</p>
+        <div class="d-flex justify-content-center flex-wrap">
+          <span class="mx-3 my-2"
+            ><i class="bi bi-geo-alt-fill me-2"></i>Pune, Maharashtra</span
+          >
+          <a href="mailto:pavan951288@gmail.com" class="text-white mx-3 my-2"
+            ><i class="bi bi-envelope-fill me-2"></i>pavan951288@gmail.com</a
+          >
+          <a href="tel:+919665603184" class="text-white mx-3 my-2"
+            ><i class="bi bi-telephone-fill me-2"></i>+91-9665603184</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="card p-5">
+          <h2 class="section-title">About Me</h2>
+          <p class="fs-5">
+            Creative and detail-oriented Web Designer & Front-End Developer with
+            5 years of experience designing and maintaining responsive,
+            user-centric digital solutions. Skilled in Bootstrap, HTML5, CSS3,
+            JavaScript, and modern design tools, delivering visually appealing
+            and functional digital experiences.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-light">
+      <div class="container">
+        <h2 class="section-title text-center">Skills & Tools</h2>
+        <div class="row text-center g-4">
+          <div class="col-md-3 col-sm-6">
+            <div class="card p-4 h-100">
+              <i class="bi bi-code-slash skill-icon mb-3"></i>
+              <h5>HTML5, CSS3, Bootstrap</h5>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="card p-4 h-100">
+              <i class="bi bi-filetype-js skill-icon mb-3"></i>
+              <h5>JavaScript, jQuery</h5>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="card p-4 h-100">
+              <i class="bi bi-cpu skill-icon mb-3"></i>
+              <h5>Angular 7, FlutterFlow</h5>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="card p-4 h-100">
+              <i class="bi bi-database skill-icon mb-3"></i>
+              <h5>PHP, MySQL</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2 class="section-title text-center">Featured Projects</h2>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="card project-card">
+              <img
+                src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80"
+                class="card-img-top"
+                alt="Project 1"
+              />
+              <div class="card-body">
+                <h5 class="card-title">tradeexchange.co</h5>
+                <p class="card-text">B2B Web Platform</p>
+                <a
+                  href="https://www.tradeexchange.co"
+                  target="_blank"
+                  class="btn btn-primary"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card project-card">
+              <img
+                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=400&q=80"
+                class="card-img-top"
+                alt="Project 2"
+              />
+              <div class="card-body">
+                <h5 class="card-title">tradesignals.io</h5>
+                <p class="card-text">Trading Signals Hub</p>
+                <a
+                  href="https://tradesignals.io"
+                  target="_blank"
+                  class="btn btn-primary"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card project-card">
+              <img
+                src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=400&q=80"
+                class="card-img-top"
+                alt="Project 3"
+              />
+              <div class="card-body">
+                <h5 class="card-title">80shops.com</h5>
+                <p class="card-text">E-commerce Site</p>
+                <a
+                  href="https://www.80shops.com"
+                  target="_blank"
+                  class="btn btn-primary"
+                  >View Project</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section bg-light">
+      <div class="container">
+        <h2 class="section-title text-center">Experience</h2>
+        <div class="row">
+          <div class="col-md-10 mx-auto">
+            <div class="card p-4 mb-4">
+              <h5>Web Designer, Front-End Developer</h5>
+              <p class="text-muted">
+                Wipro Ltd. (ICICI Bank ) | Dec 2021 - Present
+              </p>
+              <ul>
+                <li>
+                  Maintained and enhanced ICICI Bank’s digital platforms,
+                  improving user experience.
+                </li>
+                <li>
+                  Collaborated in cross-functional teams to optimize UI
+                  components.
+                </li>
+              </ul>
+            </div>
+            <div class="card p-4 mb-4">
+              <h5>Web Designer</h5>
+              <p class="text-muted">
+                Fountaintechies Pvt. Ltd. | Dec 2019 - Dec 2021
+              </p>
+              <ul>
+                <li>
+                  Designed & developed B2B/B2C web platforms with a focus on
+                  fast, engaging UX.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container text-center">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="lead mb-4">
+          I'm currently available for freelance work and new opportunities.
+        </p>
+        <a href="mailto:pavan951288@gmail.com" class="btn btn-primary btn-lg"
+          >Email Me</a
+        >
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center">
+      <p class="mb-0">&copy; 2025 Pavan Uday Kapure. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Bootstrap & Animation JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Navbar scroll effect
+      const nav = document.querySelector(".navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          nav.classList.add("navbar-scrolled");
+        } else {
+          nav.classList.remove("navbar-scrolled");
+        }
+      });
+
+      // Section fade-in animation
+      const sections = document.querySelectorAll(".section");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+            }
+          });
+        },
+        {
+          threshold: 0.1,
+        }
+      );
+
+      sections.forEach((section) => {
+        observer.observe(section);
+      });
+    </script>
+  </body>
+</html>
