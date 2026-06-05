@@ -5,60 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Pavan Kapure | UI/UX Designer & Web Developer Portfolio - Showcasing user-centric design and development expertise."
-    />
-    <meta
-      name="keywords"
-      content="UI/UX Design, Web Development, Pavan Kapure, Portfolio, Figma, Bootstrap, JavaScript"
+      content="Pavan Kapure | UI/UX Designer & Web Developer Portfolio"
     />
     <title>Pavan Kapure | UI/UX Designer & Developer Portfolio</title>
 
-    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
-
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Open+Sans:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-
-    <!-- Font Awesome -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style-enhanced.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    <style></style>
   </head>
   <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#home">
-          <span class="brand-icon">PK</span>
-          <span class="brand-text">PAVAN KAPURE</span>
-        </a>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand" href="#home"
+          >PAVAN<span class="brand-dot">.</span>K</a
+        >
         <button
-          class="navbar-toggler"
+          class="navbar-toggler border-0"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
+          data-bs-target="#navMenu"
           aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
+        <div class="collapse navbar-collapse" id="navMenu">
+          <ul class="navbar-nav ms-auto gap-1">
             <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
             <li class="nav-item">
               <a class="nav-link" href="#about">About</a>
@@ -67,7 +53,13 @@
               <a class="nav-link" href="#skills">Skills</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#services">Services</a>
+              <a class="nav-link" href="#persona">Persona</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#branding">Branding</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#case-studies">Case Studies</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#projects">Projects</a>
@@ -80,111 +72,860 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <header id="home" class="hero-section">
-      <div class="container-fluid">
+    <!-- HERO -->
+    <section id="home">
+      <div class="hero-dots"></div>
+      <div class="hero-glow"></div>
+      <div class="container position-relative">
         <div class="row align-items-center min-vh-100">
-          <div class="col-lg-6 hero-content">
-            <div class="hero-text">
-              <p class="hero-subtitle">Welcome to my portfolio</p>
-              <h1 class="hero-title">
-                Creative UI/UX Designer & Web Developer
-              </h1>
-              <p class="hero-description">
-                I transform ideas into beautiful, functional digital
-                experiences. With 7+ years of expertise, I craft user-centric
-                solutions that drive results.
-              </p>
-              <div class="hero-buttons">
-                <a
-                  href="https://www.linkedin.com/in/pavan-kapure-a017a086"
-                  target="_blank"
-                  class="btn btn-primary btn-lg"
-                >
-                  <i class="fas fa-briefcase me-2"></i>Hire Me
-                </a>
-                <a
-                  href="images/Pavan_Kapure26.pdf"
-                  target="_blank"
-                  class="btn btn-outline-light btn-lg"
-                >
-                  <i class="fas fa-download me-2"></i>Download CV
-                </a>
+          <div class="col-lg-7">
+            <p class="h-eyebrow">
+              UI/UX Designer &amp; Web Developer &mdash; India
+            </p>
+            <h1 class="h-title">
+              Crafting<br /><em>Human-First</em><br />Experiences
+            </h1>
+            <p class="h-desc">
+              7+ years transforming complex problems into intuitive, accessible
+              and visually compelling interfaces &mdash; from deep user research
+              to pixel-perfect delivery.
+            </p>
+            <div class="h-ctas">
+              <a
+                href="https://www.linkedin.com/in/pavan-kapure-a017a086"
+                target="_blank"
+                class="btn-pk btn-li"
+              >
+                <i class="fab fa-linkedin-in"></i> Connect on LinkedIn
+              </a>
+              <a
+                href="https://wa.me/919665603184?text=Hi%20Pavan%2C%20I%20came%20across%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20project!"
+                target="_blank"
+                class="btn-pk btn-wa"
+              >
+                <i class="fab fa-whatsapp"></i> WhatsApp Me
+              </a>
+              <a
+                href="images/Pavan_Kapure26.pdf"
+                target="_blank"
+                class="btn-pk btn-ghost"
+              >
+                <i class="fas fa-download"></i> Download CV
+              </a>
+            </div>
+            <div class="h-stats">
+              <div>
+                <div class="stat-n">7+</div>
+                <div class="stat-l">Years Exp.</div>
+              </div>
+              <div>
+                <div class="stat-n">40+</div>
+                <div class="stat-l">Projects</div>
+              </div>
+              <div>
+                <div class="stat-n">15+</div>
+                <div class="stat-l">Clients</div>
               </div>
             </div>
           </div>
-          <div class="col-lg-6 hero-visual">
-            <div class="floating-card card-1">
-              <i class="fas fa-palette"></i>
-              <p>Design</p>
-            </div>
-            <div class="floating-card card-2">
-              <i class="fas fa-code"></i>
-              <p>Code</p>
-            </div>
-            <div class="floating-card card-3">
-              <i class="fas fa-rocket"></i>
-              <p>Launch</p>
+          <div
+            class="col-lg-5 d-none d-lg-flex justify-content-center align-items-center"
+          >
+            <div class="photo-wrap">
+              <!-- Unsplash royalty-free: professional woman designer -->
+              <img
+                src="https://images.unsplash.com/photo-1496171367470-9ed9a91ea931?w=840&auto=format&fit=crop&q=80"
+                alt="Pavan Kapure"
+              />
+              <div class="photo-frame"></div>
+              <div class="photo-badge">UI / UX</div>
+              <div class="photo-tag">&middot; India</div>
             </div>
           </div>
         </div>
       </div>
-    </header>
+    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section py-5">
+    <!-- ABOUT -->
+    <section id="about">
       <div class="container">
-        <div class="section-header">
-          <h2>About Me</h2>
-          <div class="header-underline"></div>
-        </div>
-        <div class="row align-items-center">
-          <div class="col-lg-6 mb-4 mb-lg-0">
-            <div class="about-image">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-5 fade-up">
+            <div class="about-img">
+              <!-- Unsplash royalty-free: professional portrait man at desk -->
               <img
-                src="images/deskimg1.jpg"
-                alt="Pavan Kapure"
-                class="img-fluid rounded-lg"
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=840&auto=format&fit=crop&q=80"
+                alt="Pavan Kapure About"
               />
+              <div class="about-frame"></div>
+              <div class="about-badge">Since 2017</div>
+            </div>
+          </div>
+          <div class="col-lg-7 fade-up">
+            <p class="eyebrow">Who I Am</p>
+            <h2 class="sec-h">
+              Designer. Developer.<br /><em>Problem Solver.</em>
+            </h2>
+            <div class="rule"></div>
+            <p
+              style="
+                color: var(--muted);
+                line-height: 1.82;
+                margin-bottom: 0.9rem;
+                font-size: 0.95rem;
+              "
+            >
+              Creative and results-driven UI/UX and Web Designer with
+              <strong style="color: var(--ink)">7+ years</strong> of experience
+              designing and developing user-centric digital solutions. Skilled
+              in transforming business requirements into intuitive, accessible,
+              and visually compelling interfaces.
+            </p>
+            <p
+              style="
+                color: var(--muted);
+                line-height: 1.82;
+                margin-bottom: 1.9rem;
+                font-size: 0.95rem;
+              "
+            >
+              Proven success collaborating with cross-functional teams to
+              deliver responsive, high-performance web applications for major
+              clients including
+              <strong style="color: var(--ink)">ICICI Bank</strong>. Proficient
+              in Figma, Bootstrap 5, JavaScript, and modern front-end practices
+              with a strong focus on usability and design systems.
+            </p>
+            <div class="row g-3 mb-3">
+              <div class="col-sm-6">
+                <div class="info-row">
+                  <div class="info-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                  </div>
+                  <div class="info-text">
+                    <strong>Location</strong><span>Maharashtra, India</span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="info-row">
+                  <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                  <div class="info-text">
+                    <strong>Email</strong
+                    ><a href="mailto:pavan951288@gmail.com"
+                      >pavan951288@gmail.com</a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="info-row">
+                  <div class="info-icon"><i class="fas fa-phone"></i></div>
+                  <div class="info-text">
+                    <strong>Phone</strong
+                    ><a href="tel:+919665603184">+91 9665 603184</a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="info-row">
+                  <div class="info-icon"><i class="fas fa-briefcase"></i></div>
+                  <div class="info-text">
+                    <strong>Available For</strong
+                    ><span>Freelance &amp; Full-time</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="
+                display: flex;
+                gap: 0.6rem;
+                flex-wrap: wrap;
+                margin-top: 1.4rem;
+              "
+            >
+              <a
+                href="https://www.linkedin.com/in/pavan-kapure-a017a086"
+                target="_blank"
+                class="btn-pk btn-li"
+                ><i class="fab fa-linkedin-in"></i> LinkedIn</a
+              >
+              <a
+                href="https://wa.me/919665603184?text=Hi%20Pavan!"
+                target="_blank"
+                class="btn-pk btn-wa"
+                ><i class="fab fa-whatsapp"></i> WhatsApp</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-lg-7">
+            <p class="eyebrow">Expertise</p>
+            <h2 class="sec-h">Skills &amp; <em>Toolset</em></h2>
+            <div class="rule"></div>
+            <p class="lead-txt mb-4">
+              Full-stack design and development — from early-stage UX research
+              through to production-ready HTML/CSS/JS delivery.
+            </p>
+          </div>
+        </div>
+        <!-- Prominent skill badges -->
+        <div class="badge-row">
+          <span class="ps p1"><i class="fas fa-pencil-ruler"></i> Figma</span>
+          <span class="ps p1"><i class="fas fa-code"></i> HTML5 / CSS3</span>
+          <span class="ps p1"><i class="fab fa-js"></i> JavaScript</span>
+          <span class="ps p2"
+            ><i class="fab fa-bootstrap"></i> Bootstrap 5</span
+          >
+          <span class="ps p2"><i class="fas fa-sitemap"></i> UX Research</span>
+          <span class="ps p2"
+            ><i class="fas fa-layer-group"></i> Design Systems</span
+          >
+          <span class="ps p3"><i class="fab fa-react"></i> React</span>
+          <span class="ps p3"><i class="fab fa-wordpress"></i> WordPress</span>
+          <span class="ps p3"><i class="fab fa-adobe"></i> Adobe Suite</span>
+          <span class="ps p3"><i class="fab fa-git-alt"></i> Git / GitHub</span>
+          <span class="ps p3"
+            ><i class="fas fa-mobile-alt"></i> Responsive Design</span
+          >
+          <span class="ps p3"
+            ><i class="fas fa-universal-access"></i> WCAG Accessibility</span
+          >
+        </div>
+        <!-- Skill bars -->
+        <div class="skill-grid">
+          <div class="skill-block fade-up">
+            <div class="sk-icon"><i class="fas fa-palette"></i></div>
+            <h5>UI / UX Design</h5>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">Figma</span
+                ><span class="bar-pct">95%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="95"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">Wireframing &amp; Prototyping</span
+                ><span class="bar-pct">92%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="92"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">Adobe Illustrator / PS</span
+                ><span class="bar-pct">85%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="85"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">Design Systems</span
+                ><span class="bar-pct">88%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="88"></div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-block fade-up">
+            <div class="sk-icon"><i class="fas fa-code"></i></div>
+            <h5>Front-End Development</h5>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">HTML5 / CSS3</span
+                ><span class="bar-pct">96%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="96"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">JavaScript / jQuery</span
+                ><span class="bar-pct">82%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="82"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">Bootstrap 5</span
+                ><span class="bar-pct">94%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="94"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">React / Angular</span
+                ><span class="bar-pct">70%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="70"></div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-block fade-up">
+            <div class="sk-icon"><i class="fas fa-users"></i></div>
+            <h5>UX Research &amp; Methods</h5>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">User Interviews</span
+                ><span class="bar-pct">90%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="90"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">Usability Testing</span
+                ><span class="bar-pct">88%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="88"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">Heuristic Evaluation</span
+                ><span class="bar-pct">85%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="85"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">A/B Testing</span
+                ><span class="bar-pct">80%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="80"></div>
+              </div>
+            </div>
+          </div>
+          <div class="skill-block fade-up">
+            <div class="sk-icon"><i class="fas fa-cogs"></i></div>
+            <h5>CMS &amp; Dev Tools</h5>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">WordPress</span
+                ><span class="bar-pct">88%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="88"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">Git / GitHub</span
+                ><span class="bar-pct">80%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="80"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">FlutterFlow</span
+                ><span class="bar-pct">72%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="72"></div>
+              </div>
+            </div>
+            <div class="bar-item">
+              <div class="bar-head">
+                <span class="bar-name">Storybook</span
+                ><span class="bar-pct">68%</span>
+              </div>
+              <div class="bar-track">
+                <div class="bar-fill" data-w="68"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERSONA -->
+    <section id="persona">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-7">
+            <p class="eyebrow p-eyebrow">User Personas</p>
+            <h2 class="sec-h p-title">
+              Understanding the <em style="color: var(--accent)">People</em> I
+              Design For
+            </h2>
+            <div class="rule"></div>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.94rem;
+                line-height: 1.82;
+                max-width: 520px;
+              "
+            >
+              Every design decision starts with empathy. I build detailed
+              personas from real user research to ensure every product solves
+              the right problem for the right person.
+            </p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="pc">
+              <!-- Unsplash royalty-free: professional Indian man -->
+              <img
+                src="assets/images/avatars11.png"
+                alt="Rajmal Jain"
+                class="pc-av"
+              />
+              <div class="pc-name">Rajmal Jain</div>
+              <div class="pc-role">
+                Banking Operations Manager &middot; 38 yrs
+              </div>
+              <p class="pc-q">
+                "I need tools that don't slow me down. Every extra click is time
+                wasted when the branch is busy."
+              </p>
+              <div class="pc-lbl">Goals</div>
+              <div>
+                <span class="pc-tag">Fast Task Completion</span
+                ><span class="pc-tag">Data Accuracy</span
+                ><span class="pc-tag">Compliance</span>
+              </div>
+              <div class="pc-lbl">Pain Points</div>
+              <div>
+                <span class="pc-tag">Complex Navigation</span
+                ><span class="pc-tag">Slow Load Times</span
+                ><span class="pc-tag">Too Many Screens</span>
+              </div>
+              <div class="pc-lbl">Tech Comfort</div>
+              <div class="pb-row">
+                <span class="pb-lbl">Digital Tools</span>
+                <div class="pb-t">
+                  <div class="pb-f" style="width: 70%"></div>
+                </div>
+              </div>
+              <div class="pb-row">
+                <span class="pb-lbl">Mobile Apps</span>
+                <div class="pb-t">
+                  <div class="pb-f" style="width: 55%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="pc">
+              <!-- Unsplash royalty-free: young woman entrepreneur -->
+              <img
+                src="assets/images/avatars33.png"
+                alt="Priya Sharma"
+                class="pc-av"
+                style="border-color: var(--blue)"
+              />
+              <div class="pc-name">Priya Sharma</div>
+              <div class="pc-role">Startup Founder &middot; 29 yrs</div>
+              <p class="pc-q">
+                "My product needs to look premium. Investors judge the UI before
+                they read the deck."
+              </p>
+              <div class="pc-lbl">Goals</div>
+              <div>
+                <span class="pc-tag">Investor-Ready UI</span
+                ><span class="pc-tag">Brand Identity</span
+                ><span class="pc-tag">MVP Speed</span>
+              </div>
+              <div class="pc-lbl">Pain Points</div>
+              <div>
+                <span class="pc-tag">Budget Constraints</span
+                ><span class="pc-tag">Tight Timelines</span
+                ><span class="pc-tag">Unclear Scope</span>
+              </div>
+              <div class="pc-lbl">Tech Comfort</div>
+              <div class="pb-row">
+                <span class="pb-lbl">Digital Tools</span>
+                <div class="pb-t">
+                  <div
+                    class="pb-f"
+                    style="width: 85%; background: var(--blue)"
+                  ></div>
+                </div>
+              </div>
+              <div class="pb-row">
+                <span class="pb-lbl">Mobile Apps</span>
+                <div class="pb-t">
+                  <div
+                    class="pb-f"
+                    style="width: 90%; background: var(--blue)"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="pc">
+              <!-- Unsplash royalty-free: professional man -->
+              <img
+                src="assets/images/avatars11.png"
+                alt="Aditya Kumar"
+                class="pc-av"
+                style="border-color: #7c8baa"
+              />
+              <div class="pc-name">Aditya Kumar</div>
+              <div class="pc-role">Product Manager &middot; 33 yrs</div>
+              <p class="pc-q">
+                "I need a designer who understands dev constraints and balances
+                business goals with user needs."
+              </p>
+              <div class="pc-lbl">Goals</div>
+              <div>
+                <span class="pc-tag">Design Systems</span
+                ><span class="pc-tag">Dev Handoff</span
+                ><span class="pc-tag">User Metrics</span>
+              </div>
+              <div class="pc-lbl">Pain Points</div>
+              <div>
+                <span class="pc-tag">Design–Dev Gap</span
+                ><span class="pc-tag">Inconsistency</span
+                ><span class="pc-tag">Late Iterations</span>
+              </div>
+              <div class="pc-lbl">Tech Comfort</div>
+              <div class="pb-row">
+                <span class="pb-lbl">Digital Tools</span>
+                <div class="pb-t">
+                  <div
+                    class="pb-f"
+                    style="width: 80%; background: #7c8baa"
+                  ></div>
+                </div>
+              </div>
+              <div class="pb-row">
+                <span class="pb-lbl">Mobile Apps</span>
+                <div class="pb-t">
+                  <div
+                    class="pb-f"
+                    style="width: 75%; background: #7c8baa"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BRANDING -->
+    <section id="branding">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-7">
+            <p class="eyebrow">Personal Brand</p>
+            <h2 class="sec-h">My Design <em>Identity</em></h2>
+            <div class="rule"></div>
+            <p class="lead-txt mb-0">
+              A strong personal brand communicates not just what I do — but how
+              and why I do it. Here's the philosophy, visual language and values
+              that define every project.
+            </p>
+          </div>
+        </div>
+        <div class="row g-4 mb-5">
+          <div class="col-md-6 col-lg-3 fade-up">
+            <div class="bc">
+              <div class="bc-num">01</div>
+              <h5>Empathy First</h5>
+              <p>
+                Every pixel starts with understanding the person behind the
+                screen. Research drives every decision.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 fade-up">
+            <div class="bc">
+              <div class="bc-num">02</div>
+              <h5>Clarity Over Cleverness</h5>
+              <p>
+                Simple, clear interfaces outlast trendy ones. Usability always
+                wins over visual novelty.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 fade-up">
+            <div class="bc">
+              <div class="bc-num">03</div>
+              <h5>Design &amp; Build</h5>
+              <p>
+                I bridge design and development — no handoff gaps, no lost
+                nuance, no missed interactions.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 fade-up">
+            <div class="bc">
+              <div class="bc-num">04</div>
+              <h5>Systems Thinking</h5>
+              <p>
+                I design components, not just screens — scalable systems that
+                grow with the product.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4 align-items-start">
+          <div class="col-lg-6">
+            <div
+              style="
+                background: var(--paper);
+                border: 1px solid var(--border);
+                padding: 2.3rem;
+              "
+            >
+              <h5
+                style="
+                  font-family: var(--body);
+                  font-weight: 800;
+                  margin-bottom: 1.4rem;
+                "
+              >
+                Brand Colour Palette
+              </h5>
+              <div class="swatch-row">
+                <div class="sw">
+                  <div class="sw-c" style="background: #111318"></div>
+                  <div class="sw-l">Ink</div>
+                </div>
+                <div class="sw">
+                  <div class="sw-c" style="background: #e84b2f"></div>
+                  <div class="sw-l">Accent</div>
+                </div>
+                <div class="sw">
+                  <div class="sw-c" style="background: #1a56db"></div>
+                  <div class="sw-l">Blue</div>
+                </div>
+                <div class="sw">
+                  <div
+                    class="sw-c"
+                    style="background: #f7f6f3; border: 1px solid var(--border)"
+                  ></div>
+                  <div class="sw-l">Paper</div>
+                </div>
+                <div class="sw">
+                  <div class="sw-c" style="background: #64697a"></div>
+                  <div class="sw-l">Muted</div>
+                </div>
+              </div>
+              <div
+                style="
+                  margin-top: 1.7rem;
+                  padding: 1.4rem;
+                  border: 1px solid var(--border);
+                "
+              >
+                <p
+                  style="
+                    font-size: 0.62rem;
+                    font-weight: 700;
+                    letter-spacing: 0.15em;
+                    text-transform: uppercase;
+                    color: var(--muted);
+                    margin-bottom: 0.65rem;
+                  "
+                >
+                  Display Typeface
+                </p>
+                <div
+                  style="
+                    font-family: &quot;Playfair Display&quot;, serif;
+                    font-size: 2.1rem;
+                    font-weight: 800;
+                    color: var(--ink);
+                    line-height: 1;
+                  "
+                >
+                  Playfair Display
+                </div>
+                <p
+                  style="
+                    font-size: 0.73rem;
+                    color: var(--muted);
+                    margin-top: 0.35rem;
+                    font-weight: 500;
+                  "
+                >
+                  Elegant &middot; Authoritative &middot; Warm &middot;
+                  Distinctive
+                </p>
+              </div>
+              <div
+                style="
+                  margin-top: 0.75rem;
+                  padding: 1.4rem;
+                  border: 1px solid var(--border);
+                "
+              >
+                <p
+                  style="
+                    font-size: 0.62rem;
+                    font-weight: 700;
+                    letter-spacing: 0.15em;
+                    text-transform: uppercase;
+                    color: var(--muted);
+                    margin-bottom: 0.65rem;
+                  "
+                >
+                  Body Typeface
+                </p>
+                <div
+                  style="
+                    font-family: &quot;Plus Jakarta Sans&quot;, sans-serif;
+                    font-size: 1.55rem;
+                    font-weight: 700;
+                    color: var(--ink);
+                    line-height: 1;
+                  "
+                >
+                  Plus Jakarta Sans
+                </div>
+                <p
+                  style="
+                    font-size: 0.73rem;
+                    color: var(--muted);
+                    margin-top: 0.35rem;
+                    font-weight: 500;
+                  "
+                >
+                  Readable &middot; Modern &middot; Humanist &middot;
+                  Professional
+                </p>
+              </div>
             </div>
           </div>
           <div class="col-lg-6">
-            <p class="about-intro">
-              Creative and results-driven UI/UX and Web Designer with 7+ years
-              of experience designing and developing user-centric digital
-              solutions.
-            </p>
-            <p>
-              Skilled in transforming business requirements into intuitive,
-              accessible, and visually compelling interfaces. Proven success in
-              collaborating with cross-functional teams to deliver responsive,
-              high-performance websites and web applications for major clients
-              like ICICI Bank.
-            </p>
-            <p>
-              Proficient in Figma, Bootstrap 5, JavaScript, and modern front-end
-              practices with a strong focus on usability, accessibility, and
-              design systems.
-            </p>
-
-            <div class="about-info">
-              <div class="info-item">
-                <span class="info-label">Location:</span>
-                <span class="info-value">Pune, Maharashtra, India</span>
+            <div
+              style="
+                background: var(--paper);
+                border: 1px solid var(--border);
+                padding: 2.3rem;
+              "
+            >
+              <h5
+                style="
+                  font-family: var(--body);
+                  font-weight: 800;
+                  margin-bottom: 1.4rem;
+                "
+              >
+                Brand Voice &amp; Tone
+              </h5>
+              <div style="display: flex; flex-direction: column; gap: 1rem">
+                <div style="display: flex; gap: 0.85rem">
+                  <div
+                    style="
+                      width: 3px;
+                      flex-shrink: 0;
+                      background: var(--accent);
+                      align-self: stretch;
+                    "
+                  ></div>
+                  <div>
+                    <strong style="font-size: 0.88rem; font-family: var(--body)"
+                      >Confident, not arrogant</strong
+                    >
+                    <p
+                      style="
+                        font-size: 0.82rem;
+                        color: var(--muted);
+                        margin-top: 0.18rem;
+                        margin-bottom: 0;
+                        line-height: 1.65;
+                      "
+                    >
+                      I know my craft and communicate it with conviction, while
+                      staying open and collaborative.
+                    </p>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 0.85rem">
+                  <div
+                    style="
+                      width: 3px;
+                      flex-shrink: 0;
+                      background: var(--blue);
+                      align-self: stretch;
+                    "
+                  ></div>
+                  <div>
+                    <strong style="font-size: 0.88rem; font-family: var(--body)"
+                      >Clear, not bland</strong
+                    >
+                    <p
+                      style="
+                        font-size: 0.82rem;
+                        color: var(--muted);
+                        margin-top: 0.18rem;
+                        margin-bottom: 0;
+                        line-height: 1.65;
+                      "
+                    >
+                      Plain language over jargon. My work speaks through
+                      simplicity, not complexity.
+                    </p>
+                  </div>
+                </div>
+                <div style="display: flex; gap: 0.85rem">
+                  <div
+                    style="
+                      width: 3px;
+                      flex-shrink: 0;
+                      background: #aaa;
+                      align-self: stretch;
+                    "
+                  ></div>
+                  <div>
+                    <strong style="font-size: 0.88rem; font-family: var(--body)"
+                      >Process-driven, not portfolio-driven</strong
+                    >
+                    <p
+                      style="
+                        font-size: 0.82rem;
+                        color: var(--muted);
+                        margin-top: 0.18rem;
+                        margin-bottom: 0;
+                        line-height: 1.65;
+                      "
+                    >
+                      I show my thinking, not just my output. The how matters as
+                      much as the what.
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div class="info-item">
-                <span class="info-label">Email:</span>
-                <span class="info-value"
-                  ><a href="mailto:pavan951288@gmail.com"
-                    >pavan951288@gmail.com</a
-                  ></span
-                >
-              </div>
-              <div class="info-item">
-                <span class="info-label">Phone:</span>
-                <span class="info-value"
-                  ><a href="tel:+919665603184">+91 9665 6031 84</a></span
-                >
+              <div class="bq">
+                <p>"Design is the silent ambassador of your brand."</p>
+                <span>&mdash; My guiding philosophy in every project</span>
               </div>
             </div>
           </div>
@@ -192,143 +933,314 @@
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="skills-section py-5">
+    <!-- CASE STUDIES -->
+    <section id="case-studies">
       <div class="container">
-        <div class="section-header">
-          <h2>My Skills</h2>
-          <div class="header-underline"></div>
+        <div class="row mb-5">
+          <div class="col-lg-7">
+            <p class="eyebrow">UX Case Studies</p>
+            <h2 class="sec-h">Deep Dives Into <em>Real Problems</em></h2>
+            <div class="rule"></div>
+            <p class="lead-txt mb-0">
+              Beyond pretty screens — here's how I research, define, design and
+              validate solutions that move the needle for real users.
+            </p>
+          </div>
         </div>
-        <div class="row">
-          <div class="col-md-6 col-lg-3 mb-4">
-            <div class="skill-card">
-              <div class="skill-icon">
-                <i class="fas fa-palette"></i>
+        <div class="row g-4">
+          <div class="col-lg-6 fade-up">
+            <div class="cc">
+              <div class="ci">
+                <!-- Unsplash royalty-free: analytics dashboard -->
+                <img
+                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80"
+                  alt="ICICI Dashboard"
+                />
+                <div class="cbadge">Featured Project</div>
               </div>
-              <h4>UI/UX Design</h4>
-              <p>
-                Figma, Adobe Photoshop, Illustrator, Canva, CorelDRAW,
-                Wireframing, Prototyping, User Research
-              </p>
+              <div class="cb">
+                <div class="c-cat">Banking &middot; Enterprise UX</div>
+                <h3 class="c-ttl">
+                  Redesigning ICICI Bank's Internal Dashboard
+                </h3>
+                <p class="c-desc">
+                  Branch managers were spending 40% of their time navigating a
+                  fragmented 12-year-old system. I led a full UX overhaul — from
+                  ethnographic research to a component-based design system
+                  adopted across 300+ branches.
+                </p>
+                <div class="c-meta">
+                  <div>
+                    <strong>Role</strong><span>Lead UI/UX Designer</span>
+                  </div>
+                  <div><strong>Duration</strong><span>8 Months</span></div>
+                  <div><strong>Platform</strong><span>Web App</span></div>
+                </div>
+                <div class="c-proc">
+                  <span class="ps2">Discover</span><span class="pa">→</span
+                  ><span class="ps2">Define</span><span class="pa">→</span
+                  ><span class="ps2">Ideate</span><span class="pa">→</span
+                  ><span class="ps2">Prototype</span><span class="pa">→</span
+                  ><span class="ps2">Test</span><span class="pa">→</span
+                  ><span class="ps2">Deliver</span>
+                </div>
+                <div class="c-out">
+                  <div class="o-item">
+                    <span class="o-n">38%</span
+                    ><span class="o-d">Task Time Reduction</span>
+                  </div>
+                  <div class="o-item">
+                    <span class="o-n">4.6★</span
+                    ><span class="o-d">User Satisfaction</span>
+                  </div>
+                  <div class="o-item">
+                    <span class="o-n">300+</span
+                    ><span class="o-d">Branches Rolled Out</span>
+                  </div>
+                </div>
+                <a href="#" class="btn-cs"
+                  >Read Full Case Study
+                  <i class="fas fa-arrow-right" style="font-size: 0.62rem"></i
+                ></a>
+              </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3 mb-4">
-            <div class="skill-card">
-              <div class="skill-icon">
-                <i class="fas fa-code"></i>
+
+          <div class="col-lg-6 fade-up">
+            <div class="cc">
+              <div class="ci">
+                <!-- Unsplash royalty-free: mobile fintech -->
+                <img
+                  src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&auto=format&fit=crop&q=80"
+                  alt="FinTech App"
+                />
+                <div class="cbadge">Mobile UX</div>
               </div>
-              <h4>Front-End Dev</h4>
-              <p>
-                HTML5, CSS3, JavaScript, jQuery, Bootstrap 5, Responsive Design,
-                React
-              </p>
+              <div class="cb">
+                <div class="c-cat">FinTech &middot; Mobile App</div>
+                <h3 class="c-ttl">
+                  FinTech Savings App &mdash; From Friction to Flow
+                </h3>
+                <p class="c-desc">
+                  A savings app with 72% drop-off at onboarding. Through
+                  usability testing and JTBD mapping, I redesigned the
+                  onboarding journey with contextual nudges that transformed
+                  retention metrics.
+                </p>
+                <div class="c-meta">
+                  <div><strong>Role</strong><span>UX Designer</span></div>
+                  <div><strong>Duration</strong><span>5 Months</span></div>
+                  <div>
+                    <strong>Platform</strong><span>iOS &amp; Android</span>
+                  </div>
+                </div>
+                <div class="c-proc">
+                  <span class="ps2">User Research</span><span class="pa">→</span
+                  ><span class="ps2">JTBD</span><span class="pa">→</span
+                  ><span class="ps2">Wireframes</span><span class="pa">→</span
+                  ><span class="ps2">A/B Test</span>
+                </div>
+                <div class="c-out">
+                  <div class="o-item">
+                    <span class="o-n">61%</span
+                    ><span class="o-d">Onboarding Done</span>
+                  </div>
+                  <div class="o-item">
+                    <span class="o-n">3×</span
+                    ><span class="o-d">D30 Retention</span>
+                  </div>
+                  <div class="o-item">
+                    <span class="o-n">28%</span
+                    ><span class="o-d">Support Ticket Drop</span>
+                  </div>
+                </div>
+                <a href="#" class="btn-cs"
+                  >Read Full Case Study
+                  <i class="fas fa-arrow-right" style="font-size: 0.62rem"></i
+                ></a>
+              </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3 mb-4">
-            <div class="skill-card">
-              <div class="skill-icon">
-                <i class="fas fa-cogs"></i>
+
+          <div class="col-lg-6 fade-up">
+            <div class="cc">
+              <div class="ci">
+                <!-- Unsplash royalty-free: ecommerce shopping -->
+                <img
+                  src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=800&auto=format&fit=crop&q=80"
+                  alt="E-Commerce Checkout"
+                />
+                <div class="cbadge">Conversion Optimisation</div>
               </div>
-              <h4>CMS & Tools</h4>
-              <p>
-                WordPress, FlutterFlow, Visual Studio Code, Git, GitHub,
-                FileZilla
-              </p>
+              <div class="cb">
+                <div class="c-cat">E-Commerce &middot; Checkout Flow</div>
+                <h3 class="c-ttl">
+                  Checkout Conversion Lift for Fashion Retail
+                </h3>
+                <p class="c-desc">
+                  Cart abandonment at 81%. Using heatmaps, session recordings
+                  and 12 user interviews, I identified 7 friction points and
+                  eliminated them through progressive disclosure and trust
+                  signals.
+                </p>
+                <div class="c-meta">
+                  <div><strong>Role</strong><span>UX + UI Designer</span></div>
+                  <div><strong>Duration</strong><span>3 Months</span></div>
+                  <div><strong>Platform</strong><span>Web + Mobile</span></div>
+                </div>
+                <div class="c-proc">
+                  <span class="ps2">Heatmaps</span><span class="pa">→</span
+                  ><span class="ps2">Interviews</span><span class="pa">→</span
+                  ><span class="ps2">Iteration</span><span class="pa">→</span
+                  ><span class="ps2">Validate</span>
+                </div>
+                <div class="c-out">
+                  <div class="o-item">
+                    <span class="o-n">34%</span
+                    ><span class="o-d">Conversion Lift</span>
+                  </div>
+                  <div class="o-item">
+                    <span class="o-n">−43%</span
+                    ><span class="o-d">Cart Abandonment</span>
+                  </div>
+                  <div class="o-item">
+                    <span class="o-n">₹18L</span
+                    ><span class="o-d">Monthly Rev. Uplift</span>
+                  </div>
+                </div>
+                <a href="#" class="btn-cs"
+                  >Read Full Case Study
+                  <i class="fas fa-arrow-right" style="font-size: 0.62rem"></i
+                ></a>
+              </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-3 mb-4">
-            <div class="skill-card">
-              <div class="skill-icon">
-                <i class="fas fa-rocket"></i>
+
+          <div class="col-lg-6 fade-up">
+            <div class="cc">
+              <div class="ci">
+                <!-- Unsplash royalty-free: design system/UI components -->
+                <img
+                  src="https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&auto=format&fit=crop&q=80"
+                  alt="Design System"
+                />
+                <div class="cbadge">Design System</div>
               </div>
-              <h4>Other Skills</h4>
-              <p>
-                PHP, Angular, MySQL, Python, OOP, SEO, Accessibility, Design
-                Systems
-              </p>
+              <div class="cb">
+                <div class="c-cat">SaaS &middot; Design System</div>
+                <h3 class="c-ttl">Building a Unified Design System for SaaS</h3>
+                <p class="c-desc">
+                  5 product teams, 0 consistency. I created a comprehensive
+                  Figma-based design system with 220+ components, accessibility
+                  docs and Storybook integration that cut new feature design
+                  time by half.
+                </p>
+                <div class="c-meta">
+                  <div>
+                    <strong>Role</strong><span>Design System Lead</span>
+                  </div>
+                  <div><strong>Duration</strong><span>6 Months</span></div>
+                  <div><strong>Tools</strong><span>Figma, Storybook</span></div>
+                </div>
+                <div class="c-proc">
+                  <span class="ps2">Audit</span><span class="pa">→</span
+                  ><span class="ps2">Tokens</span><span class="pa">→</span
+                  ><span class="ps2">Components</span><span class="pa">→</span
+                  ><span class="ps2">Doc &amp; Ship</span>
+                </div>
+                <div class="c-out">
+                  <div class="o-item">
+                    <span class="o-n">220+</span
+                    ><span class="o-d">Components</span>
+                  </div>
+                  <div class="o-item">
+                    <span class="o-n">50%</span
+                    ><span class="o-d">Faster Design</span>
+                  </div>
+                  <div class="o-item">
+                    <span class="o-n">WCAG</span
+                    ><span class="o-d">AA Compliant</span>
+                  </div>
+                </div>
+                <a href="#" class="btn-cs"
+                  >Read Full Case Study
+                  <i class="fas fa-arrow-right" style="font-size: 0.62rem"></i
+                ></a>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services-section py-5">
+    <!-- SERVICES -->
+    <section id="services">
       <div class="container">
-        <div class="section-header">
-          <h2>Services I Offer</h2>
-          <div class="header-underline"></div>
+        <div class="row mb-5">
+          <div class="col-lg-6">
+            <p class="eyebrow">What I Do</p>
+            <h2 class="sec-h">Services I <em>Offer</em></h2>
+            <div class="rule"></div>
+          </div>
         </div>
-        <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-desktop"></i>
-              </div>
-              <h4>Web Design</h4>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="svc">
+              <div class="svc-icon"><i class="fas fa-desktop"></i></div>
+              <h5>Web Design</h5>
               <p>
                 Beautiful, responsive web designs that captivate and convert
-                your audience.
+                using modern design principles.
               </p>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-mobile-alt"></i>
-              </div>
-              <h4>Web Application</h4>
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="svc">
+              <div class="svc-icon"><i class="fas fa-mobile-alt"></i></div>
+              <h5>Web Application UI</h5>
               <p>
                 Feature-rich web applications with intuitive interfaces and
-                seamless interactions.
+                seamless user interactions.
               </p>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-laptop-code"></i>
-              </div>
-              <h4>Web Development</h4>
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="svc">
+              <div class="svc-icon"><i class="fas fa-laptop-code"></i></div>
+              <h5>Web Development</h5>
               <p>
-                Clean, efficient code that brings designs to life with modern
-                technologies.
+                Clean, efficient code that brings designs to life with HTML5,
+                CSS3, JavaScript and Bootstrap 5.
               </p>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-image"></i>
-              </div>
-              <h4>Banner Design</h4>
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="svc">
+              <div class="svc-icon"><i class="fas fa-user-friends"></i></div>
+              <h5>UX Research</h5>
               <p>
-                Eye-catching banners and graphics that grab attention and drive
-                engagement.
+                User interviews, usability testing and data-informed insights to
+                validate product decisions.
               </p>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-lightbulb"></i>
-              </div>
-              <h4>Branding</h4>
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="svc">
+              <div class="svc-icon"><i class="fas fa-lightbulb"></i></div>
+              <h5>Branding</h5>
               <p>
-                Comprehensive branding solutions that define your unique
-                identity and values.
+                Logos, style guides and visual identity systems that define your
+                brand at every touchpoint.
               </p>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="service-card">
-              <div class="service-icon">
-                <i class="fas fa-search"></i>
-              </div>
-              <h4>SEO Optimization</h4>
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="svc">
+              <div class="svc-icon"><i class="fas fa-layer-group"></i></div>
+              <h5>Design Systems</h5>
               <p>
-                Strategic SEO practices to improve visibility and drive organic
-                traffic.
+                Scalable component libraries and design tokens that keep
+                products consistent as they grow.
               </p>
             </div>
           </div>
@@ -336,161 +1248,129 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section py-5">
+    <!-- PROJECTS -->
+    <section id="projects" style="background: var(--paper)">
       <div class="container">
-        <div class="section-header">
-          <h2>Featured Projects</h2>
-          <div class="header-underline"></div>
+        <div class="row mb-5">
+          <div class="col-lg-6">
+            <p class="eyebrow">Portfolio</p>
+            <h2 class="sec-h">Featured <em>Projects</em></h2>
+            <div class="rule"></div>
+          </div>
         </div>
-        <div class="row">
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="project-card">
-              <div class="project-image">
-                <img
-                  src="images/work-1.jpg"
-                  alt="Project 1"
-                  class="img-fluid"
-                />
-                <div class="project-overlay">
-                  <a href="#" class="btn btn-sm btn-light">View Project</a>
-                </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="pj">
+              <div class="pj-img">
+                <!-- Unsplash royalty-free: branding/logo design -->
+                <img src="assets/images/work-1.jpg" alt="Branding" />
               </div>
-              <div class="project-content">
-                <h5>Branding & Illustration Design</h5>
+              <div class="pj-body">
+                <div class="pj-tag">Branding</div>
+                <h5>Branding &amp; Illustration Design</h5>
                 <p>
-                  A comprehensive branding project showcasing logo design, color
-                  palette, and brand guidelines.
+                  Logo, colour palette, brand guidelines and illustration system
+                  for a product company.
                 </p>
-                <div class="project-tags">
-                  <span class="tag">Branding</span>
-                  <span class="tag">Design</span>
-                </div>
+                <span class="pill">Figma</span
+                ><span class="pill">Illustrator</span
+                ><span class="pill">Brand</span>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="project-card">
-              <div class="project-image">
-                <img
-                  src="images/work-2.jpg"
-                  alt="Project 2"
-                  class="img-fluid"
-                />
-                <div class="project-overlay">
-                  <a href="#" class="btn btn-sm btn-light">View Project</a>
-                </div>
+
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="pj">
+              <div class="pj-img">
+                <!-- Unsplash royalty-free: web app UI on laptop -->
+                <img src="assets/images/work-2.jpg" alt="Web App UI" />
               </div>
-              <div class="project-content">
+              <div class="pj-body">
+                <div class="pj-tag">Web App &middot; UI/UX</div>
                 <h5>Web Application UI Design</h5>
                 <p>
-                  Modern web application interface with focus on user experience
-                  and accessibility.
+                  Modern web application interface focused on user experience
+                  and component scalability.
                 </p>
-                <div class="project-tags">
-                  <span class="tag">Web App</span>
-                  <span class="tag">UI/UX</span>
-                </div>
+                <span class="pill">Figma</span
+                ><span class="pill">Bootstrap</span><span class="pill">JS</span>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="project-card">
-              <div class="project-image">
-                <img
-                  src="images/work-3.jpg"
-                  alt="Project 3"
-                  class="img-fluid"
-                />
-                <div class="project-overlay">
-                  <a href="#" class="btn btn-sm btn-light">View Project</a>
-                </div>
+
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="pj">
+              <div class="pj-img">
+                <!-- Unsplash royalty-free: mobile phone app -->
+                <img src="assets/images/work-3.jpg" alt="Mobile App" />
               </div>
-              <div class="project-content">
+              <div class="pj-body">
+                <div class="pj-tag">Mobile</div>
                 <h5>Mobile App Design</h5>
                 <p>
-                  Intuitive mobile application design with smooth interactions
-                  and beautiful aesthetics.
+                  Intuitive mobile application with smooth micro-interactions
+                  and gesture-driven layout.
                 </p>
-                <div class="project-tags">
-                  <span class="tag">Mobile</span>
-                  <span class="tag">App</span>
-                </div>
+                <span class="pill">Figma</span
+                ><span class="pill">Prototype</span
+                ><span class="pill">iOS</span>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="project-card">
-              <div class="project-image">
-                <img
-                  src="images/work-4.jpg"
-                  alt="Project 4"
-                  class="img-fluid"
-                />
-                <div class="project-overlay">
-                  <a href="#" class="btn btn-sm btn-light">View Project</a>
-                </div>
+
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="pj">
+              <div class="pj-img">
+                <!-- Unsplash royalty-free: analytics charts -->
+                <img src="assets/images/work-4.jpg" alt="Dashboard" />
               </div>
-              <div class="project-content">
-                <h5>Dashboard Design</h5>
+              <div class="pj-body">
+                <div class="pj-tag">Dashboard &middot; Analytics</div>
+                <h5>Analytics Dashboard</h5>
                 <p>
-                  Analytics dashboard with data visualization and intuitive
-                  navigation patterns.
+                  Data-heavy dashboard with clear hierarchy, data visualisation
+                  and role-based navigation.
                 </p>
-                <div class="project-tags">
-                  <span class="tag">Dashboard</span>
-                  <span class="tag">Analytics</span>
-                </div>
+                <span class="pill">HTML</span><span class="pill">Chart.js</span
+                ><span class="pill">CSS</span>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="project-card">
-              <div class="project-image">
-                <img
-                  src="images/work-5.jpg"
-                  alt="Project 5"
-                  class="img-fluid"
-                />
-                <div class="project-overlay">
-                  <a href="#" class="btn btn-sm btn-light">View Project</a>
-                </div>
+
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="pj">
+              <div class="pj-img">
+                <!-- Unsplash royalty-free: online shopping -->
+                <img src="assets/images/work-5.jpg" alt="E-Commerce" />
               </div>
-              <div class="project-content">
-                <h5>E-commerce Website</h5>
+              <div class="pj-body">
+                <div class="pj-tag">E-Commerce &middot; Web</div>
+                <h5>E-Commerce Website</h5>
                 <p>
-                  Full-featured e-commerce platform with product showcase and
-                  checkout flow.
+                  Full-featured e-commerce platform with optimised product
+                  showcase and checkout flow.
                 </p>
-                <div class="project-tags">
-                  <span class="tag">E-commerce</span>
-                  <span class="tag">Web</span>
-                </div>
+                <span class="pill">WordPress</span
+                ><span class="pill">WooCommerce</span>
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="project-card">
-              <div class="project-image">
-                <img
-                  src="images/work-6.jpg"
-                  alt="Project 6"
-                  class="img-fluid"
-                />
-                <div class="project-overlay">
-                  <a href="#" class="btn btn-sm btn-light">View Project</a>
-                </div>
+
+          <div class="col-md-6 col-lg-4 fade-up">
+            <div class="pj">
+              <div class="pj-img">
+                <!-- Unsplash royalty-free: laptop workspace -->
+                <img src="assets/images/work-6.jpg" alt="Landing Page" />
               </div>
-              <div class="project-content">
+              <div class="pj-body">
+                <div class="pj-tag">Marketing &middot; Landing</div>
                 <h5>Landing Page Design</h5>
                 <p>
-                  High-converting landing page with compelling copy and clear
-                  call-to-actions.
+                  High-converting landing page with trust signals and persuasive
+                  CTA hierarchy.
                 </p>
-                <div class="project-tags">
-                  <span class="tag">Landing</span>
-                  <span class="tag">Marketing</span>
-                </div>
+                <span class="pill">HTML</span><span class="pill">CSS</span
+                ><span class="pill">JS</span>
               </div>
             </div>
           </div>
@@ -498,32 +1378,45 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section py-5">
+    <!-- CONTACT -->
+    <section id="contact">
       <div class="container">
-        <div class="section-header">
-          <h2>Let's Work Together</h2>
-          <div class="header-underline"></div>
-          <p class="section-subtitle">
-            Have a project in mind? Let's create something amazing together!
-          </p>
+        <div class="row mb-5">
+          <div class="col-lg-7">
+            <p class="eyebrow ct-eye">Get In Touch</p>
+            <h2 class="sec-h ct-h">
+              Let's Build Something <em style="color: var(--accent)">Great</em>
+            </h2>
+            <div class="rule"></div>
+            <p
+              style="
+                color: rgba(255, 255, 255, 0.5);
+                font-size: 0.95rem;
+                line-height: 1.8;
+                max-width: 500px;
+              "
+            >
+              Have a project, collaboration or just want to say hi? Reach me via
+              the form, WhatsApp or LinkedIn — I respond within 24 hours.
+            </p>
+          </div>
         </div>
-        <div class="row">
-          <div class="col-lg-8 mx-auto">
-            <form class="contact-form">
-              <div class="row">
-                <div class="col-md-6 mb-3">
+        <div class="row g-5">
+          <div class="col-lg-7">
+            <form id="contactForm">
+              <div class="row g-3 mb-3">
+                <div class="col-sm-6">
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control fc"
                     placeholder="Your Name"
                     required
                   />
                 </div>
-                <div class="col-md-6 mb-3">
+                <div class="col-sm-6">
                   <input
                     type="email"
-                    class="form-control"
+                    class="form-control fc"
                     placeholder="Your Email"
                     required
                   />
@@ -532,93 +1425,230 @@
               <div class="mb-3">
                 <input
                   type="text"
-                  class="form-control"
+                  class="form-control fc"
                   placeholder="Subject"
                   required
                 />
               </div>
               <div class="mb-3">
                 <textarea
-                  class="form-control"
+                  class="form-control fc"
                   rows="6"
                   placeholder="Your Message"
                   required
                 ></textarea>
               </div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-lg">
-                  <i class="fas fa-paper-plane me-2"></i>Send Message
-                </button>
-              </div>
+              <button type="submit" class="btn-send">
+                <i class="fas fa-paper-plane me-2"></i> Send Message
+              </button>
             </form>
           </div>
-        </div>
-        <div class="contact-info mt-5">
-          <div class="row text-center">
-            <div class="col-md-4 mb-3">
-              <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <h5>Location</h5>
-                <p>Pune, Maharashtra, India</p>
+          <div class="col-lg-5">
+            <div class="ci2">
+              <div class="ci2-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="ci2-text">
+                <strong>Location</strong><span>Maharashtra, India</span>
               </div>
             </div>
-            <div class="col-md-4 mb-3">
-              <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <h5>Phone</h5>
-                <p><a href="tel:+919665603184">+91 9665 6031 84</a></p>
+            <div class="ci2">
+              <div class="ci2-icon"><i class="fas fa-phone"></i></div>
+              <div class="ci2-text">
+                <strong>Phone</strong
+                ><a href="tel:+919665603184">+91 9665 603184</a>
               </div>
             </div>
-            <div class="col-md-4 mb-3">
-              <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <h5>Email</h5>
-                <p>
-                  <a href="mailto:pavan951288@gmail.com"
-                    >pavan951288@gmail.com</a
-                  >
-                </p>
+            <div class="ci2">
+              <div class="ci2-icon"><i class="fas fa-envelope"></i></div>
+              <div class="ci2-text">
+                <strong>Email</strong
+                ><a href="mailto:pavan951288@gmail.com"
+                  >pavan951288@gmail.com</a
+                >
               </div>
+            </div>
+            <div class="ci2">
+              <div
+                class="ci2-icon"
+                style="
+                  background: rgba(37, 211, 102, 0.12);
+                  color: var(--green);
+                "
+              >
+                <i class="fab fa-whatsapp"></i>
+              </div>
+              <div class="ci2-text">
+                <strong>WhatsApp</strong
+                ><a
+                  href="https://wa.me/919665603184?text=Hi%20Pavan%2C%20I%20came%20across%20your%20portfolio!"
+                  target="_blank"
+                  >+91 9665 603184 &mdash; Chat Now</a
+                >
+              </div>
+            </div>
+            <div class="ci2">
+              <div
+                class="ci2-icon"
+                style="background: rgba(26, 86, 219, 0.12); color: #4e8de3"
+              >
+                <i class="fab fa-linkedin-in"></i>
+              </div>
+              <div class="ci2-text">
+                <strong>LinkedIn</strong
+                ><a
+                  href="https://www.linkedin.com/in/pavan-kapure-a017a086"
+                  target="_blank"
+                  >linkedin.com/in/pavan-kapure</a
+                >
+              </div>
+            </div>
+
+            <div
+              style="
+                display: flex;
+                gap: 0.6rem;
+                flex-wrap: wrap;
+                margin-top: 0.3rem;
+              "
+            >
+              <a
+                href="https://wa.me/919665603184?text=Hi%20Pavan!"
+                target="_blank"
+                class="btn-pk btn-wa"
+                style="font-size: 0.78rem; padding: 0.58rem 1.1rem"
+                ><i class="fab fa-whatsapp"></i> WhatsApp Now</a
+              >
+              <a
+                href="https://www.linkedin.com/in/pavan-kapure-a017a086"
+                target="_blank"
+                class="btn-pk btn-li"
+                style="font-size: 0.78rem; padding: 0.58rem 1.1rem"
+                ><i class="fab fa-linkedin-in"></i> LinkedIn</a
+              >
+            </div>
+
+            <div class="soc-row">
+              <a
+                href="https://github.com/pavankapure"
+                target="_blank"
+                class="soc"
+                title="GitHub"
+                ><i class="fab fa-github"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/pavan-kapure-a017a086"
+                target="_blank"
+                class="soc li"
+                title="LinkedIn"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a
+                href="https://wa.me/919665603184"
+                target="_blank"
+                class="soc wa"
+                title="WhatsApp"
+                ><i class="fab fa-whatsapp"></i
+              ></a>
+              <a href="#" class="soc" title="Behance"
+                ><i class="fab fa-behance"></i
+              ></a>
+              <a href="#" class="soc" title="Dribbble"
+                ><i class="fab fa-dribbble"></i
+              ></a>
             </div>
           </div>
-        </div>
-        <div class="social-links text-center mt-4">
-          <a
-            href="https://github.com/pavankapure"
-            target="_blank"
-            class="social-link"
-          >
-            <i class="fab fa-github"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/pavan-kapure-a017a086"
-            target="_blank"
-            class="social-link"
-          >
-            <i class="fab fa-linkedin"></i>
-          </a>
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container text-center">
-        <p>
-          &copy; 2024 Pavan Kapure. All rights reserved. | Designed & Developed
-          with <i class="fas fa-heart"></i>
-        </p>
-      </div>
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        &copy; 2025 <a href="#home">Pavan Kapure</a>. All rights reserved.
+        Designed &amp; Developed with
+        <i class="fas fa-heart" style="color: var(--accent)"></i> in India.
+      </p>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+      // Navbar scroll
+      const nav = document.getElementById("mainNav");
+      window.addEventListener("scroll", () =>
+        nav.classList.toggle("scrolled", scrollY > 50),
+      );
 
-    <!-- Custom JS -->
-    <script src="js/script.js"></script>
+      // Active nav on scroll
+      document.querySelectorAll("section[id]").forEach((sec) => {
+        new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                document
+                  .querySelectorAll(".nav-link")
+                  .forEach((l) => l.classList.remove("active"));
+                const a = document.querySelector(
+                  '.nav-link[href="#' + e.target.id + '"]',
+                );
+                if (a) a.classList.add("active");
+              }
+            });
+          },
+          { threshold: 0.35 },
+        ).observe(sec);
+      });
+
+      // Fade-up
+      new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) e.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.1 },
+      ).observe
+        ? document.querySelectorAll(".fade-up").forEach((el) =>
+            new IntersectionObserver(
+              (entries) => {
+                entries.forEach((e) => {
+                  if (e.isIntersecting) e.target.classList.add("visible");
+                });
+              },
+              { threshold: 0.1 },
+            ).observe(el),
+          )
+        : null;
+
+      // Skill bars animate in
+      document.querySelectorAll(".bar-fill").forEach((b) => {
+        new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.style.width = e.target.dataset.w + "%";
+              }
+            });
+          },
+          { threshold: 0.2 },
+        ).observe(b);
+      });
+
+      // Contact form
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector(".btn-send");
+        const orig = btn.innerHTML;
+        btn.innerHTML = '<i class="fas fa-check me-2"></i> Message Sent!';
+        btn.style.background = "#25a160";
+        btn.style.borderColor = "#25a160";
+        setTimeout(() => {
+          btn.innerHTML = orig;
+          btn.style.background = "";
+          btn.style.borderColor = "";
+        }, 3500);
+      });
+    </script>
   </body>
 </html>
