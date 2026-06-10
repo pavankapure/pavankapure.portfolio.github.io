@@ -1,0 +1,2959 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Health Passport — Complete UI Showcase</title>
+    <style>
+      :root {
+        --teal: #0f6e56;
+        --teal-lt: #e1f5ee;
+        --teal-mid: #1d9e75;
+        --teal-dk: #085041;
+        --blue: #185fa5;
+        --blue-lt: #e6f1fb;
+        --blue-mid: #378add;
+        --blue-dk: #0c447c;
+        --amber: #ba7517;
+        --amber-lt: #fdf0d5;
+        --amber-dk: #633806;
+        --red: #a32d2d;
+        --red-lt: #fcebeb;
+        --red-dk: #791f1f;
+        --purple: #534ab7;
+        --purple-lt: #eeedfe;
+        --purple-dk: #3c3489;
+        --green: #3b6d11;
+        --green-lt: #eaf3de;
+        --green-dk: #27500a;
+        --gray: #5f5e5a;
+        --gray-lt: #f1efe8;
+        --gray-dk: #2c2c2a;
+        --bg: #ffffff;
+        --bg2: #f8f7f4;
+        --bg3: #f1efe8;
+        --text: #1a1a18;
+        --text2: #5f5e5a;
+        --text3: #9b9990;
+        --border: rgba(0, 0, 0, 0.09);
+        --border2: rgba(0, 0, 0, 0.15);
+        --r: 8px;
+        --r-lg: 14px;
+        --r-xl: 20px;
+        --font: "Segoe UI", system-ui, -apple-system, sans-serif;
+        --mono: "Cascadia Code", "Fira Code", monospace;
+        --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: var(--font);
+        font-size: 14px;
+        line-height: 1.6;
+        color: var(--text);
+        background: #1a1a2e;
+        overflow-x: hidden;
+      }
+
+      /* ── LAUNCHER ── */
+      #launcher {
+        min-height: 100vh;
+        background: linear-gradient(
+          135deg,
+          #0d1b2a 0%,
+          #1a1a2e 50%,
+          #16213e 100%
+        );
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+      .launch-brand {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .launch-logo {
+        width: 72px;
+        height: 72px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, var(--blue), var(--teal));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        margin: 0 auto 16px;
+        box-shadow: 0 8px 32px rgba(24, 95, 165, 0.4);
+      }
+      .launch-name {
+        font-size: 32px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.5px;
+      }
+      .launch-tag {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 6px;
+      }
+      .portal-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        max-width: 800px;
+        width: 100%;
+      }
+      @media (max-width: 600px) {
+        .portal-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .portal-btn {
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: var(--r-lg);
+        padding: 20px 16px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: #fff;
+      }
+      .portal-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+      .portal-btn .pb-icon {
+        font-size: 32px;
+        margin-bottom: 10px;
+      }
+      .portal-btn .pb-name {
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .portal-btn .pb-sub {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.45);
+        margin-top: 3px;
+      }
+      .portal-btn.pt-mobile {
+        border-color: rgba(24, 95, 165, 0.6);
+        background: rgba(24, 95, 165, 0.12);
+      }
+      .portal-btn.pt-hosp {
+        border-color: rgba(15, 110, 86, 0.6);
+        background: rgba(15, 110, 86, 0.12);
+      }
+      .portal-btn.pt-lab {
+        border-color: rgba(83, 74, 183, 0.6);
+        background: rgba(83, 74, 183, 0.12);
+      }
+      .portal-btn.pt-ins {
+        border-color: rgba(186, 117, 23, 0.6);
+        background: rgba(186, 117, 23, 0.12);
+      }
+      .portal-btn.pt-admin {
+        border-color: rgba(163, 45, 45, 0.6);
+        background: rgba(163, 45, 45, 0.12);
+      }
+
+      /* ── PORTAL SHELL ── */
+      #portal-shell {
+        display: none;
+        min-height: 100vh;
+        background: var(--bg3);
+      }
+      .ps-topbar {
+        height: 52px;
+        background: var(--bg);
+        border-bottom: 0.5px solid var(--border2);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 0 20px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: var(--shadow);
+      }
+      .ps-back {
+        cursor: pointer;
+        color: var(--text2);
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 10px;
+        border-radius: var(--r);
+        border: none;
+        background: var(--bg2);
+      }
+      .ps-back:hover {
+        background: var(--bg3);
+      }
+      .ps-portal-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+      }
+      .ps-portal-badge {
+        font-size: 11px;
+        padding: 2px 9px;
+        border-radius: 20px;
+        font-weight: 500;
+      }
+      .ps-screen-tabs {
+        display: flex;
+        gap: 6px;
+        margin-left: auto;
+        flex-wrap: wrap;
+      }
+      .ps-screen-tabs button {
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: var(--r);
+        border: 0.5px solid var(--border2);
+        background: transparent;
+        color: var(--text2);
+        cursor: pointer;
+        transition: all 0.12s;
+      }
+      .ps-screen-tabs button:hover {
+        background: var(--bg2);
+        color: var(--text);
+      }
+      .ps-screen-tabs button.active {
+        color: #fff;
+        border-color: transparent;
+        font-weight: 500;
+      }
+      .ps-body {
+        padding: 24px;
+      }
+
+      /* ── BADGE ── */
+      .badge {
+        display: inline-block;
+        font-size: 11px;
+        padding: 2px 9px;
+        border-radius: 20px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .b-teal {
+        background: var(--teal-lt);
+        color: var(--teal-dk);
+      }
+      .b-blue {
+        background: var(--blue-lt);
+        color: var(--blue-dk);
+      }
+      .b-amber {
+        background: var(--amber-lt);
+        color: var(--amber-dk);
+      }
+      .b-red {
+        background: var(--red-lt);
+        color: var(--red-dk);
+      }
+      .b-purple {
+        background: var(--purple-lt);
+        color: var(--purple-dk);
+      }
+      .b-green {
+        background: var(--green-lt);
+        color: var(--green-dk);
+      }
+      .b-gray {
+        background: var(--gray-lt);
+        color: var(--gray-dk);
+      }
+
+      /* ── SCREEN ── */
+      .screen {
+        display: none;
+        animation: fadeIn 0.2s ease;
+      }
+      .screen.active {
+        display: block;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(6px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      /* ── CARD ── */
+      .card {
+        background: var(--bg);
+        border: 0.5px solid var(--border2);
+        border-radius: var(--r-lg);
+        padding: 18px 20px;
+        margin-bottom: 14px;
+      }
+      .card-head {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding-bottom: 10px;
+        border-bottom: 0.5px solid var(--border);
+      }
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+      }
+      @media (max-width: 640px) {
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 400px) {
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* ── METRIC ── */
+      .metric {
+        background: var(--bg2);
+        border-radius: var(--r);
+        padding: 16px;
+        text-align: center;
+      }
+      .metric .val {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .metric .lbl {
+        font-size: 11px;
+        color: var(--text3);
+        margin-top: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+      }
+      .metric .chg {
+        font-size: 11px;
+        margin-top: 4px;
+      }
+
+      /* ── TABLE ── */
+      .tbl-wrap {
+        overflow-x: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      th {
+        text-align: left;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 7px 10px;
+        border-bottom: 0.5px solid var(--border2);
+      }
+      td {
+        padding: 9px 10px;
+        border-bottom: 0.5px solid var(--border);
+        vertical-align: middle;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+      tr:hover td {
+        background: var(--bg2);
+      }
+
+      /* ── INPUT / BTN ── */
+      .inp {
+        width: 100%;
+        padding: 8px 12px;
+        border: 0.5px solid var(--border2);
+        border-radius: var(--r);
+        font-size: 13px;
+        background: var(--bg);
+        color: var(--text);
+        outline: none;
+      }
+      .inp:focus {
+        border-color: var(--blue-mid);
+        box-shadow: 0 0 0 3px rgba(24, 95, 165, 0.1);
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        border-radius: var(--r);
+        font-size: 13px;
+        font-weight: 500;
+        cursor: pointer;
+        border: none;
+        transition: all 0.15s;
+      }
+      .btn-primary {
+        background: var(--blue);
+        color: #fff;
+      }
+      .btn-primary:hover {
+        background: var(--blue-dk);
+      }
+      .btn-teal {
+        background: var(--teal);
+        color: #fff;
+      }
+      .btn-teal:hover {
+        background: var(--teal-dk);
+      }
+      .btn-ghost {
+        background: transparent;
+        border: 0.5px solid var(--border2);
+        color: var(--text2);
+      }
+      .btn-ghost:hover {
+        background: var(--bg2);
+      }
+      .btn-danger {
+        background: var(--red);
+        color: #fff;
+      }
+      .btn-sm {
+        padding: 5px 11px;
+        font-size: 12px;
+      }
+
+      /* ── PROGRESS ── */
+      .pbar-wrap {
+        background: var(--bg3);
+        border-radius: 4px;
+        height: 7px;
+        overflow: hidden;
+      }
+      .pbar {
+        height: 100%;
+        border-radius: 4px;
+      }
+
+      /* ── AVATAR ── */
+      .ava {
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      /* ── SIDEBAR (portal inner) ── */
+      .portal-layout {
+        display: flex;
+        gap: 0;
+        min-height: calc(100vh - 52px);
+      }
+      .portal-sidebar {
+        width: 220px;
+        background: var(--bg);
+        border-right: 0.5px solid var(--border2);
+        flex-shrink: 0;
+        padding: 16px 0;
+      }
+      .portal-content {
+        flex: 1;
+        min-width: 0;
+        padding: 24px;
+      }
+      @media (max-width: 768px) {
+        .portal-sidebar {
+          display: none;
+        }
+        .portal-content {
+          padding: 16px;
+        }
+      }
+      .ps-menu-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 16px;
+        font-size: 13px;
+        color: var(--text2);
+        cursor: pointer;
+        transition: all 0.12s;
+        border-left: 2px solid transparent;
+      }
+      .ps-menu-item:hover {
+        background: var(--bg2);
+        color: var(--text);
+      }
+      .ps-menu-item.active {
+        background: var(--blue-lt);
+        color: var(--blue);
+        border-left-color: var(--blue);
+        font-weight: 500;
+      }
+      .ps-menu-item .mi-icon {
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .ps-menu-label {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--text3);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        padding: 12px 16px 4px;
+      }
+
+      /* ── STAT BAR ── */
+      .stat-bar {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 6px 0;
+        font-size: 13px;
+      }
+      .stat-bar-key {
+        color: var(--text2);
+        min-width: 160px;
+      }
+      .stat-bar-val {
+        font-weight: 500;
+        min-width: 40px;
+        text-align: right;
+      }
+
+      /* ── TIMELINE ── */
+      .tl {
+        padding-left: 20px;
+        position: relative;
+      }
+      .tl::before {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 4px;
+        bottom: 4px;
+        width: 1px;
+        background: var(--border2);
+      }
+      .tl-item {
+        position: relative;
+        margin-bottom: 16px;
+      }
+      .tl-dot {
+        position: absolute;
+        left: -17px;
+        top: 4px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        border: 2px solid var(--bg);
+      }
+      .tl-title {
+        font-size: 13px;
+        font-weight: 600;
+      }
+      .tl-sub {
+        font-size: 12px;
+        color: var(--text2);
+        margin-top: 2px;
+      }
+
+      /* ── NOTIFICATION ── */
+      .notif {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: var(--r);
+        border: 0.5px solid var(--border);
+        background: var(--bg);
+        margin-bottom: 8px;
+      }
+      .notif-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        margin-top: 4px;
+      }
+      .notif-title {
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .notif-sub {
+        font-size: 12px;
+        color: var(--text2);
+        margin-top: 1px;
+      }
+      .notif-time {
+        font-size: 11px;
+        color: var(--text3);
+        margin-left: auto;
+        flex-shrink: 0;
+      }
+
+      /* ── CHART (CSS bar chart) ── */
+      .bar-chart {
+        display: flex;
+        align-items: flex-end;
+        gap: 8px;
+        height: 100px;
+        padding: 0 4px;
+      }
+      .bar-col {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+      }
+      .bar-fill {
+        width: 100%;
+        border-radius: 4px 4px 0 0;
+        transition: height 0.3s;
+      }
+      .bar-lbl {
+        font-size: 10px;
+        color: var(--text3);
+        text-align: center;
+      }
+      .bar-val {
+        font-size: 10px;
+        font-weight: 600;
+        color: var(--text2);
+      }
+
+      /* ── QR DISPLAY ── */
+      .qr-display {
+        background: var(--bg2);
+        border: 0.5px solid var(--border2);
+        border-radius: var(--r-lg);
+        padding: 20px;
+        text-align: center;
+      }
+      .qr-grid {
+        display: inline-grid;
+        grid-template-columns: repeat(10, 9px);
+        gap: 1.5px;
+      }
+      .qr-b {
+        width: 9px;
+        height: 9px;
+        background: var(--text);
+        border-radius: 1px;
+      }
+      .qr-w {
+        width: 9px;
+        height: 9px;
+        background: var(--bg);
+        border-radius: 1px;
+      }
+
+      /* ── HEALTH CARD ── */
+      .health-card {
+        background: linear-gradient(135deg, var(--blue-dk), var(--teal));
+        border-radius: var(--r-xl);
+        padding: 22px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+      }
+      .health-card::before {
+        content: "";
+        position: absolute;
+        right: -40px;
+        top: -40px;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .health-card::after {
+        content: "";
+        position: absolute;
+        right: 30px;
+        bottom: -50px;
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .hc-logo {
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        opacity: 0.8;
+        margin-bottom: 16px;
+      }
+      .hc-name {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .hc-sub {
+        font-size: 12px;
+        opacity: 0.7;
+      }
+      .hc-data {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 16px;
+      }
+      .hc-field .hf-lbl {
+        font-size: 10px;
+        opacity: 0.6;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+      .hc-field .hf-val {
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+
+      /* ── TRUST INDICATOR ── */
+      .trust-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 3px 8px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-weight: 500;
+      }
+      .trust-1 {
+        background: var(--gray-lt);
+        color: var(--gray-dk);
+      }
+      .trust-2 {
+        background: var(--blue-lt);
+        color: var(--blue-dk);
+      }
+      .trust-3 {
+        background: var(--teal-lt);
+        color: var(--teal-dk);
+      }
+
+      /* ── STATUS DOT ── */
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .sd-green {
+        background: #22c55e;
+      }
+      .sd-amber {
+        background: #f59e0b;
+      }
+      .sd-red {
+        background: #ef4444;
+      }
+      .sd-gray {
+        background: #9ca3af;
+      }
+
+      /* ── FORM ROW ── */
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .form-label {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--text2);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ══════════════════════════════════════
+     LAUNCHER
+══════════════════════════════════════ -->
+    <div id="launcher">
+      <div class="launch-brand">
+        <div class="launch-logo">🏥</div>
+        <div class="launch-name">Health Passport</div>
+        <div class="launch-tag">One QR Code. Complete Healthcare Access.</div>
+        <div
+          style="
+            margin-top: 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.35);
+          "
+        >
+          Interactive UI showcase — click any portal to explore
+        </div>
+      </div>
+      <div class="portal-grid">
+        <div class="portal-btn pt-mobile" onclick="openPortal('mobile')">
+          <div class="pb-icon">📱</div>
+          <div class="pb-name">Patient App</div>
+          <div class="pb-sub">Flutter · iOS & Android</div>
+        </div>
+        <div class="portal-btn pt-hosp" onclick="openPortal('hospital')">
+          <div class="pb-icon">🏥</div>
+          <div class="pb-name">Hospital Portal</div>
+          <div class="pb-sub">React · Staff dashboard</div>
+        </div>
+        <div class="portal-btn pt-lab" onclick="openPortal('lab')">
+          <div class="pb-icon">🔬</div>
+          <div class="pb-name">Lab Portal</div>
+          <div class="pb-sub">React · Lab technician</div>
+        </div>
+        <div class="portal-btn pt-ins" onclick="openPortal('insurance')">
+          <div class="pb-icon">🛡</div>
+          <div class="pb-name">Insurance Portal</div>
+          <div class="pb-sub">React · Insurer staff</div>
+        </div>
+        <div class="portal-btn pt-admin" onclick="openPortal('admin')">
+          <div class="pb-icon">⚙️</div>
+          <div class="pb-name">Admin Portal</div>
+          <div class="pb-sub">React · Super admin</div>
+        </div>
+        <div
+          class="portal-btn"
+          onclick="openPortal('qr')"
+          style="border-color: rgba(255, 255, 255, 0.2)"
+        >
+          <div class="pb-icon">🔲</div>
+          <div class="pb-name">Emergency QR</div>
+          <div class="pb-sub">Public + OTP access</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+     PORTAL SHELL
+══════════════════════════════════════ -->
+    <div id="portal-shell">
+      <div class="ps-topbar">
+        <button class="ps-back" onclick="backToLauncher()">← Back</button>
+        <div id="ps-name" class="ps-portal-name"></div>
+        <span id="ps-badge" class="ps-portal-badge badge"></span>
+        <div class="ps-screen-tabs" id="ps-tabs"></div>
+      </div>
+      <div id="ps-content"></div>
+    </div>
+
+    <script>
+      /* ══ PORTAL CONFIGS ══ */
+      const portals = {
+        /* ══════════ PATIENT MOBILE ══════════ */
+        mobile: {
+          name: "Patient App (Flutter)",
+          badge: "📱 Mobile",
+          badgeClass: "b-blue",
+          tabs: [
+            "Home",
+            "My Records",
+            "Emergency QR",
+            "Family",
+            "Insurance",
+            "Analytics",
+          ],
+          screens: {
+            Home: `
+<div style="max-width:420px;margin:0 auto;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;">
+    <div>
+      <div style="font-size:13px;color:var(--text2);">Good morning 👋</div>
+      <div style="font-size:20px;font-weight:700;margin-top:2px;">Aarav Kumar</div>
+    </div>
+    <div class="ava" style="width:44px;height:44px;background:var(--blue-lt);color:var(--blue-dk);font-size:15px;">AK</div>
+  </div>
+
+  <div class="health-card" style="margin-bottom:16px;">
+    <div class="hc-logo">HEALTH PASSPORT</div>
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="hc-name">Aarav Kumar</div>
+        <div class="hc-sub">HP-2024-00112 · Active</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-size:28px;font-weight:800;">87</div>
+        <div style="font-size:10px;opacity:.6;">HEALTH SCORE</div>
+      </div>
+    </div>
+    <div class="hc-data">
+      <div class="hc-field"><div class="hf-lbl">Blood group</div><div class="hf-val">B+</div></div>
+      <div class="hc-field"><div class="hf-lbl">DOB</div><div class="hf-val">14 Mar 1988</div></div>
+      <div class="hc-field"><div class="hf-lbl">Allergies</div><div class="hf-val">Penicillin</div></div>
+      <div class="hc-field"><div class="hf-lbl">Insurance</div><div class="hf-val">Star Health ✓</div></div>
+    </div>
+  </div>
+
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px;">
+    <div style="background:var(--bg);border:.5px solid var(--border2);border-radius:var(--r-lg);padding:12px 8px;text-align:center;cursor:pointer;">
+      <div style="font-size:22px;margin-bottom:4px;">🔲</div><div style="font-size:11px;font-weight:500;">QR Code</div>
+    </div>
+    <div style="background:var(--bg);border:.5px solid var(--border2);border-radius:var(--r-lg);padding:12px 8px;text-align:center;cursor:pointer;">
+      <div style="font-size:22px;margin-bottom:4px;">📄</div><div style="font-size:11px;font-weight:500;">Reports</div>
+    </div>
+    <div style="background:var(--bg);border:.5px solid var(--border2);border-radius:var(--r-lg);padding:12px 8px;text-align:center;cursor:pointer;">
+      <div style="font-size:22px;margin-bottom:4px;">💊</div><div style="font-size:11px;font-weight:500;">Medicines</div>
+    </div>
+    <div style="background:var(--bg);border:.5px solid var(--border2);border-radius:var(--r-lg);padding:12px 8px;text-align:center;cursor:pointer;">
+      <div style="font-size:22px;margin-bottom:4px;">📅</div><div style="font-size:11px;font-weight:500;">Appointments</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">⚡ Upcoming reminders</div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:.5px solid var(--border);">
+      <div style="width:36px;height:36px;border-radius:var(--r);background:var(--red-lt);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">💊</div>
+      <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Metformin 500mg</div><div style="font-size:12px;color:var(--text2);">After dinner</div></div>
+      <span class="badge b-amber">8:00 PM</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:.5px solid var(--border);">
+      <div style="width:36px;height:36px;border-radius:var(--r);background:var(--blue-lt);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">📅</div>
+      <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Dr. Priya Sharma — Diabetologist</div><div style="font-size:12px;color:var(--text2);">Apollo Hospital, Andheri</div></div>
+      <span class="badge b-blue">Tomorrow 11 AM</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;">
+      <div style="width:36px;height:36px;border-radius:var(--r);background:var(--amber-lt);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">🛡</div>
+      <div style="flex:1;"><div style="font-size:13px;font-weight:500;">Star Health — Policy renewal</div><div style="font-size:12px;color:var(--text2);">Expires in 45 days</div></div>
+      <span class="badge b-amber">Renew</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">📊 This week's vitals</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+      <div style="background:var(--teal-lt);border-radius:var(--r);padding:12px;text-align:center;">
+        <div style="font-size:11px;color:var(--teal-dk);font-weight:600;margin-bottom:4px;">BP</div>
+        <div style="font-size:18px;font-weight:700;color:var(--teal-dk);">118/76</div>
+        <div style="font-size:10px;color:var(--text3);">mmHg</div>
+      </div>
+      <div style="background:var(--blue-lt);border-radius:var(--r);padding:12px;text-align:center;">
+        <div style="font-size:11px;color:var(--blue-dk);font-weight:600;margin-bottom:4px;">GLUCOSE</div>
+        <div style="font-size:18px;font-weight:700;color:var(--blue-dk);">108</div>
+        <div style="font-size:10px;color:var(--text3);">mg/dL fasting</div>
+      </div>
+      <div style="background:var(--green-lt);border-radius:var(--r);padding:12px;text-align:center;">
+        <div style="font-size:11px;color:var(--green-dk);font-weight:600;margin-bottom:4px;">BMI</div>
+        <div style="font-size:18px;font-weight:700;color:var(--green-dk);">24.2</div>
+        <div style="font-size:10px;color:var(--text3);">Normal</div>
+      </div>
+    </div>
+  </div>
+</div>`,
+
+            "My Records": `
+<div style="max-width:640px;margin:0 auto;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div style="font-size:18px;font-weight:700;">Medical records</div>
+    <button class="btn btn-primary btn-sm">+ Add record</button>
+  </div>
+  <input class="inp" placeholder="🔍  Search records… (try 'diabetes' or 'blood test')" style="margin-bottom:14px;">
+  <div style="display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap;">
+    <span class="badge b-blue" style="cursor:pointer;padding:5px 12px;">All (14)</span>
+    <span class="badge b-gray" style="cursor:pointer;padding:5px 12px;">Lab reports (6)</span>
+    <span class="badge b-gray" style="cursor:pointer;padding:5px 12px;">Imaging (3)</span>
+    <span class="badge b-gray" style="cursor:pointer;padding:5px 12px;">Prescriptions (3)</span>
+    <span class="badge b-gray" style="cursor:pointer;padding:5px 12px;">Diseases (2)</span>
+  </div>
+
+  ${[
+    {
+      icon: "🧪",
+      title: "CBC — Complete Blood Count",
+      src: "Metropolis Labs",
+      date: "12 Jun 2025",
+      trust: 3,
+      score: 94,
+      cat: "Lab report",
+    },
+    {
+      icon: "🫁",
+      title: "Chest X-Ray (PA view)",
+      src: "Apollo Radiology",
+      date: "3 May 2025",
+      trust: 3,
+      score: 91,
+      cat: "Imaging",
+    },
+    {
+      icon: "🩸",
+      title: "HbA1c — Glycated haemoglobin",
+      src: "Dr. Lal PathLabs",
+      date: "18 Apr 2025",
+      trust: 3,
+      score: 89,
+      cat: "Lab report",
+    },
+    {
+      icon: "💊",
+      title: "Metformin 500mg Prescription",
+      src: "Dr. Priya Sharma, Apollo",
+      date: "1 Apr 2025",
+      trust: 3,
+      score: 96,
+      cat: "Prescription",
+    },
+    {
+      icon: "🫀",
+      title: "ECG — 12 Lead",
+      src: "Self uploaded",
+      date: "15 Mar 2025",
+      trust: 2,
+      score: 55,
+      cat: "Imaging",
+    },
+    {
+      icon: "📋",
+      title: "Type 2 Diabetes — Diagnosis",
+      src: "Apollo Hospital",
+      date: "Jan 2022",
+      trust: 3,
+      score: 98,
+      cat: "Disease",
+    },
+  ]
+    .map(
+      (r) => `
+  <div class="card" style="padding:14px 16px;margin-bottom:8px;cursor:pointer;">
+    <div style="display:flex;align-items:flex-start;gap:12px;">
+      <div style="width:40px;height:40px;border-radius:var(--r);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">${r.icon}</div>
+      <div style="flex:1;min-width:0;">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:4px;">
+          <div style="font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${r.title}</div>
+          <span class="trust-chip trust-${r.trust}">${r.trust === 3 ? "✓ Inst. verified" : r.trust === 2 ? "◎ Doc. verified" : "○ Self-declared"}</span>
+        </div>
+        <div style="font-size:12px;color:var(--text2);">${r.src} &nbsp;·&nbsp; ${r.date}</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+          <div style="flex:1;"><div class="pbar-wrap"><div class="pbar" style="width:${r.score}%;background:${r.trust === 3 ? "var(--teal)" : r.trust === 2 ? "var(--blue)" : "var(--gray)"};"></div></div></div>
+          <div style="font-size:11px;font-weight:600;color:var(--text3);">Trust ${r.score}</div>
+          <span class="badge b-gray" style="font-size:10px;">${r.cat}</span>
+        </div>
+      </div>
+    </div>
+  </div>`,
+    )
+    .join("")}
+  <div style="text-align:center;padding:12px;font-size:13px;color:var(--text3);">Showing 6 of 14 records &nbsp;·&nbsp; <span style="color:var(--blue);cursor:pointer;">Load more</span></div>
+</div>`,
+
+            "Emergency QR": `
+<div style="max-width:480px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Emergency QR code</div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:20px;">Scan in any emergency — no app needed. Rotate anytime.</div>
+
+  <div class="qr-display" style="margin-bottom:16px;">
+    <div style="font-size:12px;color:var(--text3);font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px;">AARAV KUMAR — HEALTH PASSPORT</div>
+    <div class="qr-grid" id="qr-main"></div>
+    <div style="margin-top:12px;font-size:13px;color:var(--text2);">HP-2024-00112 &nbsp;·&nbsp; Rotate daily</div>
+    <div style="margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn btn-primary btn-sm">⬇ Download PDF</button>
+      <button class="btn btn-ghost btn-sm">🍎 Add to Wallet</button>
+      <button class="btn btn-ghost btn-sm">↗ Share link</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">👁 Layer 1 — Public visibility (always on)</div>
+    <div style="display:grid;gap:8px;">
+      ${[
+        { l: "Name", v: "Aarav Kumar", on: true },
+        { l: "Age", v: "37 years", on: true },
+        { l: "Blood group", v: "B+ (Inst. verified)", on: true },
+        { l: "Allergies", v: "Penicillin, Sulfa drugs", on: true },
+        { l: "Emergency contact", v: "+91 98765 00000", on: true },
+      ]
+        .map(
+          (
+            f,
+          ) => `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:.5px solid var(--border);font-size:13px;">
+        <div style="flex:1;"><span style="color:var(--text3);">${f.l}:</span> <strong>${f.v}</strong></div>
+        <div style="width:36px;height:20px;border-radius:10px;background:${f.on ? "var(--teal)" : "var(--bg3)"};cursor:pointer;position:relative;flex-shrink:0;">
+          <div style="width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:2px;${f.on ? "right:2px" : "left:2px"};box-shadow:0 1px 3px rgba(0,0,0,.2);"></div>
+        </div>
+      </div>`,
+        )
+        .join("")}
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🚑 Layer 2 — Paramedic (OTP access) &nbsp;<span class="badge b-amber">OTP-gated</span></div>
+    <div style="display:grid;gap:8px;">
+      ${[
+        { l: "Chronic diseases", v: "Type 2 Diabetes (2022)", on: true },
+        {
+          l: "Current medicines",
+          v: "Metformin 500mg, Amlodipine 5mg",
+          on: true,
+        },
+        { l: "Insurance active", v: "Star Health — ₹10L coverage", on: true },
+        { l: "Treating doctor", v: "Dr. Priya Sharma, Apollo", on: false },
+      ]
+        .map(
+          (
+            f,
+          ) => `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:.5px solid var(--border);font-size:13px;">
+        <div style="flex:1;"><span style="color:var(--text3);">${f.l}:</span> <strong>${f.v}</strong></div>
+        <div style="width:36px;height:20px;border-radius:10px;background:${f.on ? "var(--amber)" : "var(--bg3)"};cursor:pointer;position:relative;flex-shrink:0;">
+          <div style="width:16px;height:16px;border-radius:50%;background:#fff;position:absolute;top:2px;${f.on ? "right:2px" : "left:2px"};box-shadow:0 1px 3px rgba(0,0,0,.2);"></div>
+        </div>
+      </div>`,
+        )
+        .join("")}
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-head">🔒 Recent QR scan activity</div>
+    ${[
+      {
+        who: "Apollo Hospital, Andheri",
+        role: "Hospital",
+        time: "Today, 10:32 AM",
+        tier: "Layer 3",
+      },
+      {
+        who: "Paramedic Badge #PD-4421",
+        role: "Paramedic",
+        time: "5 Jun, 2:14 PM",
+        tier: "Layer 2",
+      },
+      {
+        who: "Unknown scanner",
+        role: "Public",
+        time: "3 Jun, 9:05 AM",
+        tier: "Layer 1",
+      },
+    ]
+      .map(
+        (
+          s,
+        ) => `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:.5px solid var(--border);font-size:13px;">
+      <span style="font-size:16px;">${s.role === "Hospital" ? "🏥" : s.role === "Paramedic" ? "🚑" : "👁"}</span>
+      <div style="flex:1;"><div style="font-weight:500;">${s.who}</div><div style="font-size:11px;color:var(--text3);">${s.time}</div></div>
+      <span class="badge ${s.tier === "Layer 3" ? "b-teal" : s.tier === "Layer 2" ? "b-amber" : "b-gray"}">${s.tier}</span>
+    </div>`,
+      )
+      .join("")}
+  </div>
+</div>`,
+
+            Family: `
+<div style="max-width:640px;margin:0 auto;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div style="font-size:18px;font-weight:700;">Family profiles</div>
+    <button class="btn btn-primary btn-sm">+ Add member</button>
+  </div>
+  <div style="display:grid;gap:12px;">
+    ${[
+      {
+        name: "Priya Kumar",
+        rel: "Spouse",
+        age: 35,
+        bg: "A+",
+        health: 92,
+        ins: true,
+        records: 8,
+      },
+      {
+        name: "Arjun Kumar",
+        rel: "Son",
+        age: 9,
+        bg: "B+",
+        health: 95,
+        ins: true,
+        records: 4,
+      },
+      {
+        name: "Kavya Kumar",
+        rel: "Daughter",
+        age: 6,
+        bg: "O+",
+        health: 97,
+        ins: true,
+        records: 3,
+      },
+      {
+        name: "Ramesh Kumar",
+        rel: "Father",
+        age: 67,
+        bg: "B+",
+        health: 74,
+        ins: false,
+        records: 12,
+      },
+    ]
+      .map(
+        (m, i) => `
+    <div class="card" style="padding:16px;">
+      <div style="display:flex;align-items:flex-start;gap:12px;">
+        <div class="ava" style="width:48px;height:48px;font-size:16px;background:${["var(--purple-lt)", "var(--blue-lt)", "var(--teal-lt)", "var(--amber-lt)"][i]};color:${["var(--purple-dk)", "var(--blue-dk)", "var(--teal-dk)", "var(--amber-dk)"][i]};">${m.name
+          .split(" ")
+          .map((n) => n[0])
+          .join("")}</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <div style="font-size:15px;font-weight:600;">${m.name}</div>
+            <span class="badge b-gray">${m.rel}</span>
+            ${!m.ins ? '<span class="badge b-amber">No insurance</span>' : ""}
+          </div>
+          <div style="font-size:12px;color:var(--text2);margin-bottom:8px;">Age ${m.age} &nbsp;·&nbsp; Blood group: <strong>${m.bg}</strong> &nbsp;·&nbsp; ${m.records} records</div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="flex:1;"><div class="pbar-wrap"><div class="pbar" style="width:${m.health}%;background:${m.health > 85 ? "var(--teal)" : m.health > 70 ? "var(--amber)" : "var(--red)"};"></div></div></div>
+            <div style="font-size:12px;font-weight:600;color:var(--text3);">Score ${m.health}</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;flex-shrink:0;">
+          <button class="btn btn-ghost btn-sm" style="font-size:11px;">🔲 QR</button>
+          <button class="btn btn-ghost btn-sm" style="font-size:11px;">📂 Records</button>
+        </div>
+      </div>
+    </div>`,
+      )
+      .join("")}
+  </div>
+</div>`,
+
+            Insurance: `
+<div style="max-width:640px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:16px;">Insurance management</div>
+  <div style="display:grid;gap:12px;margin-bottom:20px;">
+    ${[
+      {
+        name: "Star Health — Family Floater",
+        pno: "POL-2024-887654",
+        cov: "₹10,00,000",
+        exp: "31 Mar 2026",
+        status: "Active",
+        pct: 75,
+        col: "teal",
+      },
+      {
+        name: "HDFC Ergo — Critical Illness",
+        pno: "HDFC-CI-2023-441",
+        cov: "₹25,00,000",
+        exp: "15 Jul 2025",
+        status: "Renew soon",
+        pct: 12,
+        col: "amber",
+      },
+    ]
+      .map(
+        (p) => `
+    <div class="card" style="border-left:4px solid var(--${p.col});">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px;">
+        <div><div style="font-size:15px;font-weight:600;margin-bottom:4px;">${p.name}</div>
+        <div style="font-size:12px;color:var(--text3);">${p.pno}</div></div>
+        <span class="badge b-${p.col}">${p.status}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:12px;">
+        <div><div style="font-size:11px;color:var(--text3);">Coverage</div><div style="font-size:14px;font-weight:600;">${p.cov}</div></div>
+        <div><div style="font-size:11px;color:var(--text3);">Expires</div><div style="font-size:14px;font-weight:600;">${p.exp}</div></div>
+        <div><div style="font-size:11px;color:var(--text3);">Members</div><div style="font-size:14px;font-weight:600;">Self + 4</div></div>
+      </div>
+      <div style="margin-bottom:8px;"><div class="pbar-wrap" style="height:5px;"><div class="pbar" style="width:${p.pct}%;background:var(--${p.col});"></div></div>
+      <div style="font-size:11px;color:var(--text3);margin-top:3px;">${p.pct}% policy term remaining</div></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn btn-ghost btn-sm">View policy</button>
+        <button class="btn btn-ghost btn-sm">Claim history</button>
+        <button class="btn btn-${p.col === "amber" ? "primary" : "ghost"} btn-sm">${p.status === "Renew soon" ? "🔄 Renew now" : "📋 New claim"}</button>
+      </div>
+    </div>`,
+      )
+      .join("")}
+  </div>
+  <div class="card">
+    <div class="card-head">🛒 Insurance marketplace — recommended for you</div>
+    <div style="display:grid;gap:10px;">
+      ${[
+        {
+          name: "Niva Bupa — ReAssure 2.0",
+          type: "Health floater",
+          cov: "₹20L",
+          prem: "₹18,240/yr",
+          rating: "4.6",
+        },
+        {
+          name: "Care Supreme — Direct",
+          type: "Individual + OPD",
+          cov: "₹15L",
+          prem: "₹12,800/yr",
+          rating: "4.4",
+        },
+      ]
+        .map(
+          (p) => `
+      <div style="border:.5px solid var(--border2);border-radius:var(--r);padding:12px;display:flex;align-items:center;gap:12px;">
+        <div style="width:40px;height:40px;border-radius:var(--r);background:var(--blue-lt);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🛡</div>
+        <div style="flex:1;"><div style="font-size:13px;font-weight:600;">${p.name}</div>
+        <div style="font-size:12px;color:var(--text2);">${p.type} · Coverage: ${p.cov} · ${p.prem}</div>
+        <div style="font-size:11px;color:var(--amber);margin-top:2px;">⭐ ${p.rating}</div></div>
+        <button class="btn btn-primary btn-sm">Compare</button>
+      </div>`,
+        )
+        .join("")}
+    </div>
+  </div>
+</div>`,
+
+            Analytics: `
+<div style="max-width:640px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:16px;">Health analytics</div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="metric"><div class="val" style="color:var(--teal);">87</div><div class="lbl">Health score</div><div class="chg" style="color:var(--teal);">▲ +3 this month</div></div>
+    <div class="metric"><div class="val">72kg</div><div class="lbl">Weight</div><div class="chg" style="color:var(--teal);">▼ −0.5kg</div></div>
+    <div class="metric"><div class="val">118/76</div><div class="lbl">Blood pressure</div><div class="chg" style="color:var(--teal);">Normal range</div></div>
+    <div class="metric"><div class="val">24.2</div><div class="lbl">BMI</div><div class="chg" style="color:var(--text3);">Normal</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head">📈 Blood glucose trend (last 8 weeks)</div>
+    <div style="display:flex;align-items:flex-end;gap:6px;height:110px;padding:0 4px;margin-bottom:8px;">
+      ${[
+        { w: "W1", v: 122, h: 80 },
+        { w: "W2", v: 118, h: 75 },
+        { w: "W3", v: 115, h: 72 },
+        { w: "W4", v: 121, h: 79 },
+        { w: "W5", v: 109, h: 64 },
+        { w: "W6", v: 112, h: 67 },
+        { w: "W7", v: 106, h: 61 },
+        { w: "W8", v: 108, h: 63 },
+      ]
+        .map(
+          (b) => `
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <div style="font-size:9px;font-weight:600;color:var(--blue-dk);">${b.v}</div>
+        <div style="width:100%;height:${b.h}px;border-radius:4px 4px 0 0;background:${b.v > 120 ? "var(--amber)" : "var(--blue)"};"></div>
+        <div style="font-size:9px;color:var(--text3);">${b.w}</div>
+      </div>`,
+        )
+        .join("")}
+    </div>
+    <div style="display:flex;gap:12px;font-size:12px;color:var(--text2);">
+      <span style="color:var(--amber);">■</span> High (&gt;120 mg/dL) &nbsp;
+      <span style="color:var(--blue);">■</span> Normal (&lt;120 mg/dL)
+    </div>
+  </div>
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-head">⚖️ Weight (kg)</div>
+      <div style="display:flex;align-items:flex-end;gap:4px;height:70px;">
+        ${[74, 73.5, 73, 73, 72.8, 72.5, 72.2, 72]
+          .map(
+            (v, i) => `
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="width:100%;height:${(v - 70) * 20}px;border-radius:3px 3px 0 0;background:var(--teal);opacity:${0.5 + i * 0.07};"></div>
+        </div>`,
+          )
+          .join("")}
+      </div>
+      <div style="font-size:12px;color:var(--teal);margin-top:8px;">▼ −2kg in 8 weeks 💪</div>
+    </div>
+    <div class="card">
+      <div class="card-head">💓 Heart rate (bpm)</div>
+      <div style="display:flex;align-items:flex-end;gap:4px;height:70px;">
+        ${[72, 74, 70, 76, 71, 73, 69, 72]
+          .map(
+            (v) => `
+        <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+          <div style="width:100%;height:${(v - 60) * 4}px;border-radius:3px 3px 0 0;background:var(--red);opacity:.7;"></div>
+        </div>`,
+          )
+          .join("")}
+      </div>
+      <div style="font-size:12px;color:var(--teal);margin-top:8px;">Avg 72 bpm — Normal range</div>
+    </div>
+  </div>
+</div>`,
+          },
+        },
+
+        /* ══════════ HOSPITAL PORTAL ══════════ */
+        hospital: {
+          name: "Hospital Portal",
+          badge: "🏥 Hospital",
+          badgeClass: "b-teal",
+          tabs: [
+            "Dashboard",
+            "Scan Patient QR",
+            "Patient Records",
+            "Upload Report",
+            "Appointments",
+          ],
+          screens: {
+            Dashboard: `
+<div class="portal-layout">
+  <div class="portal-sidebar">
+    <div style="padding:12px 16px 8px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;"><span>🏥</span>Apollo Hospital</div>
+    <div style="padding:0 16px 12px;font-size:11px;color:var(--text3);">Andheri · Mumbai</div>
+    <div class="ps-menu-label">Clinical</div>
+    <div class="ps-menu-item active"><span class="mi-icon">📊</span>Dashboard</div>
+    <div class="ps-menu-item"><span class="mi-icon">🔲</span>Scan QR</div>
+    <div class="ps-menu-item"><span class="mi-icon">👤</span>Patient records</div>
+    <div class="ps-menu-item"><span class="mi-icon">📄</span>Upload reports</div>
+    <div class="ps-menu-item"><span class="mi-icon">📅</span>Appointments</div>
+    <div class="ps-menu-label">Settings</div>
+    <div class="ps-menu-item"><span class="mi-icon">👥</span>Staff accounts</div>
+    <div class="ps-menu-item"><span class="mi-icon">🔒</span>Access logs</div>
+  </div>
+  <div class="portal-content">
+    <div style="font-size:20px;font-weight:700;margin-bottom:4px;">Clinical dashboard</div>
+    <div style="font-size:13px;color:var(--text2);margin-bottom:20px;">Tuesday, 10 June 2025 · Dr. Ramesh Iyer logged in</div>
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="metric"><div class="val">24</div><div class="lbl">Today's patients</div><div class="chg" style="color:var(--teal);">▲ 3 vs yesterday</div></div>
+      <div class="metric"><div class="val">8</div><div class="lbl">QR scans today</div><div class="chg" style="color:var(--text3);">All authorised</div></div>
+      <div class="metric"><div class="val">12</div><div class="lbl">Reports uploaded</div><div class="chg" style="color:var(--teal);">This week: 64</div></div>
+      <div class="metric"><div class="val">3</div><div class="lbl">Pending verifications</div><div class="chg" style="color:var(--amber);">Action needed</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">📋 Today's appointments</div>
+        ${[
+          {
+            time: "10:00 AM",
+            name: "Aarav Kumar",
+            type: "Follow-up — Diabetes",
+            status: "In progress",
+          },
+          {
+            time: "11:00 AM",
+            name: "Neha Patel",
+            type: "New consultation",
+            status: "Waiting",
+          },
+          {
+            time: "12:00 PM",
+            name: "Suresh Rao",
+            type: "Post-surgery review",
+            status: "Confirmed",
+          },
+          {
+            time: "2:30 PM",
+            name: "Anita Joshi",
+            type: "Lab results review",
+            status: "Confirmed",
+          },
+        ]
+          .map(
+            (
+              a,
+            ) => `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:.5px solid var(--border);">
+          <div style="width:65px;font-size:12px;font-weight:500;color:var(--text3);flex-shrink:0;">${a.time}</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:500;">${a.name}</div><div style="font-size:12px;color:var(--text2);">${a.type}</div></div>
+          <span class="badge ${a.status === "In progress" ? "b-teal" : a.status === "Waiting" ? "b-amber" : "b-blue"}">${a.status}</span>
+        </div>`,
+          )
+          .join("")}
+      </div>
+      <div class="card">
+        <div class="card-head">🔲 Recent QR scans</div>
+        ${[
+          {
+            name: "Aarav Kumar",
+            time: "10:02 AM",
+            access: "Full records",
+            by: "Dr. Iyer",
+          },
+          {
+            name: "Meera Singh",
+            time: "9:45 AM",
+            access: "Full records",
+            by: "Dr. Patel",
+          },
+          {
+            name: "Rajesh Kumar",
+            time: "9:12 AM",
+            access: "Emergency",
+            by: "Paramedic",
+          },
+        ]
+          .map(
+            (
+              s,
+            ) => `<div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:.5px solid var(--border);">
+          <div class="ava" style="width:32px;height:32px;font-size:11px;background:var(--teal-lt);color:var(--teal-dk);">${s.name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")}</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:500;">${s.name}</div><div style="font-size:11px;color:var(--text3);">${s.time} · by ${s.by}</div></div>
+          <span class="badge b-teal" style="font-size:10px;">${s.access}</span>
+        </div>`,
+          )
+          .join("")}
+        <div style="margin-top:10px;"><button class="btn btn-ghost btn-sm" style="width:100%;">🔲 Scan new patient QR</button></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head">⏳ Pending record verifications</div>
+      <table>
+        <thead><tr><th>Patient</th><th>Record type</th><th>Submitted</th><th>Action</th></tr></thead>
+        <tbody>
+          ${[
+            { p: "Vikram Shah", r: "CBC Report", d: "9 Jun 2025" },
+            { p: "Sonal Mehta", r: "X-Ray (Chest)", d: "8 Jun 2025" },
+            { p: "Arjun Nair", r: "Discharge summary", d: "7 Jun 2025" },
+          ]
+            .map(
+              (v) => `<tr>
+            <td><strong>${v.p}</strong></td>
+            <td>${v.r}</td>
+            <td style="color:var(--text3);">${v.d}</td>
+            <td><button class="btn btn-teal btn-sm">Verify & sign</button></td>
+          </tr>`,
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>`,
+
+            "Scan Patient QR": `
+<div style="max-width:500px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Scan patient QR</div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:20px;">Point camera at patient's Health Passport QR code to access records.</div>
+  <div style="background:var(--bg);border:2px dashed var(--border2);border-radius:var(--r-xl);padding:40px;text-align:center;margin-bottom:16px;cursor:pointer;">
+    <div style="font-size:48px;margin-bottom:12px;">📷</div>
+    <div style="font-size:14px;font-weight:500;margin-bottom:6px;">Tap to scan QR code</div>
+    <div style="font-size:12px;color:var(--text3);">Or enter patient's HP ID manually below</div>
+    <input class="inp" placeholder="HP-2024-00112" style="max-width:200px;margin:12px auto 0;text-align:center;">
+    <div style="margin-top:10px;"><button class="btn btn-primary">Look up patient</button></div>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--teal);">
+    <div style="font-size:13px;font-weight:600;margin-bottom:12px;color:var(--teal);">✅ Patient found — Aarav Kumar</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;font-size:13px;">
+      <div><span style="color:var(--text3);">Name: </span><strong>Aarav Kumar</strong></div>
+      <div><span style="color:var(--text3);">Age: </span><strong>37 years</strong></div>
+      <div><span style="color:var(--text3);">Blood group: </span><strong>B+ ✓</strong></div>
+      <div><span style="color:var(--text3);">Allergies: </span><strong>Penicillin</strong></div>
+      <div><span style="color:var(--text3);">Insurance: </span><strong>Star Health ✓</strong></div>
+      <div><span style="color:var(--text3);">Last visit: </span><strong>1 Apr 2025</strong></div>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn-teal">📂 View full records</button>
+      <button class="btn btn-ghost">📄 Upload new report</button>
+      <button class="btn btn-ghost">💊 Issue prescription</button>
+    </div>
+  </div>
+</div>`,
+
+            "Patient Records": `
+<div style="max-width:700px;margin:0 auto;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div>
+      <div style="font-size:18px;font-weight:700;">Patient records</div>
+      <div style="font-size:13px;color:var(--text2);">Aarav Kumar · HP-2024-00112 · Consent granted</div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <button class="btn btn-ghost btn-sm">📄 Upload</button>
+      <button class="btn btn-teal btn-sm">💊 Prescribe</button>
+    </div>
+  </div>
+  <div class="card" style="margin-bottom:14px;">
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;">
+      <div class="ava" style="width:56px;height:56px;font-size:18px;background:var(--blue-lt);color:var(--blue-dk);">AK</div>
+      <div style="flex:1;">
+        <div style="font-size:16px;font-weight:700;margin-bottom:4px;">Aarav Kumar</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--text2);">
+          <span>DOB: 14 Mar 1988</span><span>·</span><span>Blood: <strong>B+</strong></span><span>·</span><span>Allergy: <strong>Penicillin</strong></span>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;">
+          <span class="badge b-teal">Diabetes Type 2</span>
+          <span class="badge b-blue">Hypertension</span>
+          <span class="badge b-green">Insurance active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head">📋 Medical records (institution-authorised view)</div>
+    <table>
+      <thead><tr><th>Record</th><th>Category</th><th>Date</th><th>Trust</th><th>Action</th></tr></thead>
+      <tbody>
+        ${[
+          { name: "CBC Report", cat: "Lab", date: "12 Jun 2025", trust: 3 },
+          { name: "Chest X-Ray", cat: "Imaging", date: "3 May 2025", trust: 3 },
+          {
+            name: "Metformin Prescription",
+            cat: "Rx",
+            date: "1 Apr 2025",
+            trust: 3,
+          },
+          { name: "HbA1c", cat: "Lab", date: "18 Apr 2025", trust: 3 },
+          {
+            name: "Discharge Summary 2023",
+            cat: "Discharge",
+            date: "Nov 2023",
+            trust: 3,
+          },
+          {
+            name: "ECG (self uploaded)",
+            cat: "Imaging",
+            date: "15 Mar 2025",
+            trust: 2,
+          },
+        ]
+          .map(
+            (r) => `<tr>
+          <td><strong>${r.name}</strong></td>
+          <td><span class="badge b-gray">${r.cat}</span></td>
+          <td style="color:var(--text3);">${r.date}</td>
+          <td><span class="trust-chip trust-${r.trust}">${r.trust === 3 ? "✓ Inst." : r.trust === 2 ? "◎ Doc." : "○ Self"}</span></td>
+          <td><button class="btn btn-ghost btn-sm">View</button></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</div>`,
+
+            "Upload Report": `
+<div style="max-width:500px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Upload & verify report</div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:20px;">Reports uploaded by your institution are automatically trust level 3 (institution verified).</div>
+  <div class="card">
+    <div class="card-head">📄 Upload new report</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Patient ID</label><input class="inp" value="HP-2024-00112"></div>
+      <div class="form-group"><label class="form-label">Report type</label><select class="inp"><option>Lab report</option><option>Imaging</option><option>Discharge summary</option><option>Prescription</option></select></div>
+    </div>
+    <div class="form-group" style="margin-bottom:12px;"><label class="form-label">Report title</label><input class="inp" placeholder="e.g. CBC Report — 10 Jun 2025"></div>
+    <div style="border:2px dashed var(--border2);border-radius:var(--r-lg);padding:24px;text-align:center;margin-bottom:12px;cursor:pointer;">
+      <div style="font-size:32px;margin-bottom:8px;">📁</div>
+      <div style="font-size:13px;font-weight:500;">Drop files here or click to upload</div>
+      <div style="font-size:12px;color:var(--text3);margin-top:4px;">PDF, JPG, PNG, DICOM — max 50MB</div>
+    </div>
+    <div style="background:var(--teal-lt);border-radius:var(--r);padding:12px;margin-bottom:14px;font-size:12px;color:var(--teal-dk);">
+      <strong>🔒 Institution signature</strong><br>
+      This report will be automatically digitally signed with Apollo Hospital's certificate and assigned Trust Score 3 (Institution Verified).
+    </div>
+    <div class="form-group" style="margin-bottom:14px;"><label class="form-label">Doctor's notes / summary (optional)</label><textarea class="inp" rows="3" placeholder="Key findings, diagnosis notes…"></textarea></div>
+    <div style="display:flex;gap:8px;"><button class="btn btn-teal">✅ Upload & sign report</button><button class="btn btn-ghost">Preview</button></div>
+  </div>
+</div>`,
+
+            Appointments: `
+<div style="max-width:700px;margin:0 auto;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div style="font-size:18px;font-weight:700;">Appointments</div>
+    <div style="display:flex;gap:8px;"><button class="btn btn-ghost btn-sm">← Previous</button><button class="btn btn-ghost btn-sm">Today</button><button class="btn btn-ghost btn-sm">Next →</button></div>
+  </div>
+  <div class="card">
+    <div class="card-head">📅 10 June 2025 — All doctors</div>
+    <table>
+      <thead><tr><th>Time</th><th>Patient</th><th>Doctor</th><th>Type</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        ${[
+          {
+            t: "10:00 AM",
+            p: "Aarav Kumar",
+            d: "Dr. Iyer",
+            type: "Follow-up",
+            s: "In progress",
+          },
+          {
+            t: "11:00 AM",
+            p: "Neha Patel",
+            d: "Dr. Sharma",
+            type: "New consult",
+            s: "Waiting",
+          },
+          {
+            t: "11:30 AM",
+            p: "Suresh Rao",
+            d: "Dr. Iyer",
+            type: "Post-surgery",
+            s: "Confirmed",
+          },
+          {
+            t: "12:00 PM",
+            p: "Priya Joshi",
+            d: "Dr. Desai",
+            type: "Annual check",
+            s: "Confirmed",
+          },
+          {
+            t: "2:00 PM",
+            p: "Vikram Shah",
+            d: "Dr. Iyer",
+            type: "Lab review",
+            s: "Confirmed",
+          },
+          {
+            t: "3:00 PM",
+            p: "Anita Kumar",
+            d: "Dr. Patel",
+            type: "New consult",
+            s: "Cancelled",
+          },
+        ]
+          .map(
+            (a) => `<tr>
+          <td style="font-weight:500;">${a.t}</td>
+          <td><strong>${a.p}</strong></td>
+          <td style="color:var(--text2);">${a.d}</td>
+          <td><span class="badge b-gray">${a.type}</span></td>
+          <td><span class="status-dot ${a.s === "In progress" ? "sd-green" : a.s === "Waiting" ? "sd-amber" : a.s === "Cancelled" ? "sd-red" : "sd-gray"}" style="margin-right:5px;"></span>${a.s}</td>
+          <td><button class="btn btn-ghost btn-sm">${a.s === "Cancelled" ? "Reschedule" : "Start"}</button></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</div>`,
+          },
+        },
+
+        /* ══════════ LAB PORTAL ══════════ */
+        lab: {
+          name: "Lab Portal",
+          badge: "🔬 Diagnostic Lab",
+          badgeClass: "b-purple",
+          tabs: [
+            "Dashboard",
+            "Upload Reports",
+            "Verify Results",
+            "Scan Patient",
+          ],
+          screens: {
+            Dashboard: `
+<div class="portal-layout">
+  <div class="portal-sidebar">
+    <div style="padding:12px 16px 8px;font-size:14px;font-weight:600;">🔬 Metropolis Labs</div>
+    <div style="padding:0 16px 12px;font-size:11px;color:var(--text3);">Bandra · Mumbai</div>
+    <div class="ps-menu-label">Operations</div>
+    <div class="ps-menu-item active"><span class="mi-icon">📊</span>Dashboard</div>
+    <div class="ps-menu-item"><span class="mi-icon">📤</span>Upload reports</div>
+    <div class="ps-menu-item"><span class="mi-icon">✅</span>Verify results</div>
+    <div class="ps-menu-item"><span class="mi-icon">🔲</span>Scan patient</div>
+    <div class="ps-menu-item"><span class="mi-icon">📋</span>Report history</div>
+  </div>
+  <div class="portal-content">
+    <div style="font-size:20px;font-weight:700;margin-bottom:20px;">Lab dashboard</div>
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="metric"><div class="val">47</div><div class="lbl">Reports today</div></div>
+      <div class="metric"><div class="val">12</div><div class="lbl">Pending upload</div></div>
+      <div class="metric"><div class="val">8</div><div class="lbl">Pending verify</div></div>
+      <div class="metric"><div class="val">1,240</div><div class="lbl">Total this month</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">📋 Recent uploads</div>
+        ${[
+          { p: "Aarav Kumar", r: "CBC Report", t: "10:30 AM", s: "Signed" },
+          { p: "Neha Patel", r: "Lipid profile", t: "10:12 AM", s: "Signed" },
+          { p: "Suresh Rao", r: "LFT + KFT", t: "9:55 AM", s: "Pending sign" },
+          { p: "Priya Joshi", r: "Thyroid panel", t: "9:30 AM", s: "Signed" },
+        ]
+          .map(
+            (
+              u,
+            ) => `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:.5px solid var(--border);">
+          <div class="ava" style="width:30px;height:30px;font-size:10px;background:var(--purple-lt);color:var(--purple-dk);">${u.p
+            .split(" ")
+            .map((n) => n[0])
+            .join("")}</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:500;">${u.p}</div><div style="font-size:11px;color:var(--text3);">${u.r}</div></div>
+          <div style="text-align:right;"><div style="font-size:11px;color:var(--text3);">${u.t}</div>
+          <span class="badge ${u.s === "Signed" ? "b-teal" : "b-amber"}" style="font-size:10px;">${u.s}</span></div>
+        </div>`,
+          )
+          .join("")}
+      </div>
+      <div class="card">
+        <div class="card-head">⚡ Reports by test type (today)</div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          ${[
+            { type: "CBC / Blood count", n: 14, pct: 30 },
+            { type: "Lipid profile", n: 9, pct: 19 },
+            { type: "Thyroid (TSH)", n: 7, pct: 15 },
+            { type: "HbA1c / Blood sugar", n: 8, pct: 17 },
+            { type: "LFT / KFT", n: 5, pct: 11 },
+            { type: "Others", n: 4, pct: 8 },
+          ]
+            .map(
+              (t) => `<div>
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;"><span>${t.type}</span><span style="font-weight:500;">${t.n}</span></div>
+            <div class="pbar-wrap" style="height:5px;"><div class="pbar" style="width:${t.pct * 3}%;background:var(--purple);"></div></div>
+          </div>`,
+            )
+            .join("")}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>`,
+
+            "Upload Reports": `
+<div style="max-width:560px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Upload lab report</div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:20px;">All reports from Metropolis Labs receive Trust Level 3 (Institution Verified) automatically.</div>
+  <div class="card">
+    <div class="card-head">Step 1 — Find patient</div>
+    <div style="display:flex;gap:8px;margin-bottom:8px;"><input class="inp" placeholder="Search by HP ID, name, or phone…" style="flex:1;"><button class="btn btn-primary">Search</button></div>
+    <div style="background:var(--teal-lt);border-radius:var(--r);padding:10px 12px;font-size:13px;color:var(--teal-dk);">Found: <strong>Aarav Kumar</strong> · HP-2024-00112 · DOB: 14 Mar 1988</div>
+  </div>
+  <div class="card">
+    <div class="card-head">Step 2 — Report details</div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Test type</label><select class="inp"><option>CBC — Complete Blood Count</option><option>Lipid profile</option><option>HbA1c</option><option>Thyroid panel</option></select></div>
+      <div class="form-group"><label class="form-label">Sample collected</label><input class="inp" type="date" value="2025-06-10"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label class="form-label">Lab reference number</label><input class="inp" placeholder="MET-2025-044821"></div>
+      <div class="form-group"><label class="form-label">Report ready date</label><input class="inp" type="date" value="2025-06-10"></div>
+    </div>
+    <div style="border:2px dashed var(--border2);border-radius:var(--r-lg);padding:20px;text-align:center;margin-bottom:12px;cursor:pointer;">
+      <div style="font-size:28px;margin-bottom:6px;">📁</div>
+      <div style="font-size:13px;font-weight:500;">CBC_AaravKumar_10Jun2025.pdf</div>
+      <div style="font-size:12px;color:var(--teal);">✓ File selected · 245 KB</div>
+    </div>
+    <div style="background:var(--purple-lt);border-radius:var(--r);padding:10px 12px;margin-bottom:14px;font-size:12px;color:var(--purple-dk);">
+      🔬 OCR extraction will run automatically. Structured results (Hb, WBC, Platelets etc.) will be extracted and linked to the patient record.
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head">Step 3 — Digital signature</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:13px;">
+      <div><div style="font-weight:500;">Metropolis Labs Mumbai — Digital Certificate</div><div style="font-size:12px;color:var(--text3);">Valid until 31 Dec 2025 · RSA-2048</div></div>
+      <span class="badge b-teal">✓ Loaded</span>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:8px;"><button class="btn btn-purple" style="background:var(--purple);color:#fff;">🔏 Sign & upload report</button><button class="btn btn-ghost">Preview first</button></div>
+  </div>
+</div>`,
+
+            "Verify Results": `
+<div style="max-width:700px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:16px;">Pending verifications</div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Patient</th><th>Test</th><th>Date</th><th>Uploaded by</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        ${[
+          {
+            p: "Suresh Rao",
+            t: "LFT + KFT",
+            d: "10 Jun",
+            by: "Tech. Ramesh",
+            s: "Needs sign",
+          },
+          {
+            p: "Anita Kumar",
+            t: "CBC",
+            d: "9 Jun",
+            by: "Tech. Priya",
+            s: "Needs sign",
+          },
+          {
+            p: "Vikram Shah",
+            t: "Thyroid TSH",
+            d: "9 Jun",
+            by: "Tech. Ramesh",
+            s: "Queried",
+          },
+          {
+            p: "Sonal Mehta",
+            t: "Lipid panel",
+            d: "8 Jun",
+            by: "Tech. Anand",
+            s: "Needs sign",
+          },
+        ]
+          .map(
+            (r) => `<tr>
+          <td><strong>${r.p}</strong></td>
+          <td>${r.t}</td>
+          <td style="color:var(--text3);">${r.d}</td>
+          <td style="color:var(--text2);">${r.by}</td>
+          <td><span class="badge ${r.s === "Needs sign" ? "b-amber" : "b-red"}">${r.s}</span></td>
+          <td><button class="btn btn-teal btn-sm">Review & sign</button></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</div>`,
+
+            "Scan Patient": `
+<div style="max-width:480px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Scan patient QR</div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:20px;">Scan the patient's QR to link their report directly to their Health Passport.</div>
+  <div style="background:var(--bg);border:2px dashed var(--border2);border-radius:var(--r-xl);padding:48px;text-align:center;cursor:pointer;">
+    <div style="font-size:48px;margin-bottom:10px;">📷</div>
+    <div style="font-size:14px;font-weight:500;">Tap to activate camera scan</div>
+    <div style="font-size:12px;color:var(--text3);margin-top:4px;">Lab access — report linking only</div>
+  </div>
+</div>`,
+          },
+        },
+
+        /* ══════════ INSURANCE PORTAL ══════════ */
+        insurance: {
+          name: "Insurance Portal",
+          badge: "🛡 Insurance",
+          badgeClass: "b-amber",
+          tabs: [
+            "Dashboard",
+            "Policy Management",
+            "Claims",
+            "Marketplace",
+            "Analytics",
+          ],
+          screens: {
+            Dashboard: `
+<div class="portal-layout">
+  <div class="portal-sidebar">
+    <div style="padding:12px 16px 8px;font-size:14px;font-weight:600;">🛡 Star Health</div>
+    <div style="padding:0 16px 12px;font-size:11px;color:var(--text3);">Insurance Partner Portal</div>
+    <div class="ps-menu-label">Operations</div>
+    <div class="ps-menu-item active"><span class="mi-icon">📊</span>Dashboard</div>
+    <div class="ps-menu-item"><span class="mi-icon">📋</span>Policies</div>
+    <div class="ps-menu-item"><span class="mi-icon">🏥</span>Claims</div>
+    <div class="ps-menu-item"><span class="mi-icon">🛒</span>Marketplace</div>
+    <div class="ps-menu-item"><span class="mi-icon">📈</span>Analytics</div>
+  </div>
+  <div class="portal-content">
+    <div style="font-size:20px;font-weight:700;margin-bottom:20px;">Insurance dashboard</div>
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="metric"><div class="val">8,240</div><div class="lbl">Active policies</div><div class="chg" style="color:var(--teal);">▲ +124 this month</div></div>
+      <div class="metric"><div class="val">47</div><div class="lbl">Open claims</div><div class="chg" style="color:var(--amber);">12 urgent</div></div>
+      <div class="metric"><div class="val">342</div><div class="lbl">Renewals due (30d)</div><div class="chg" style="color:var(--amber);">Alert sent: 280</div></div>
+      <div class="metric"><div class="val">₹2.4Cr</div><div class="lbl">Claims processed MTD</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">📋 Recent claims</div>
+        ${[
+          {
+            p: "Rajesh Sharma",
+            amt: "₹45,000",
+            type: "Hospitalisation",
+            s: "Approved",
+          },
+          {
+            p: "Meera Singh",
+            amt: "₹12,500",
+            type: "Day care",
+            s: "Processing",
+          },
+          {
+            p: "Arun Nair",
+            amt: "₹2,80,000",
+            type: "Surgery",
+            s: "Under review",
+          },
+          { p: "Pooja Kapoor", amt: "₹8,200", type: "OPD", s: "Approved" },
+        ]
+          .map(
+            (
+              c,
+            ) => `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:.5px solid var(--border);">
+          <div class="ava" style="width:30px;height:30px;font-size:10px;background:var(--amber-lt);color:var(--amber-dk);">${c.p
+            .split(" ")
+            .map((n) => n[0])
+            .join("")}</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:500;">${c.p}</div><div style="font-size:11px;color:var(--text3);">${c.type} · ${c.amt}</div></div>
+          <span class="badge ${c.s === "Approved" ? "b-teal" : c.s === "Processing" ? "b-blue" : "b-amber"}">${c.s}</span>
+        </div>`,
+          )
+          .join("")}
+      </div>
+      <div class="card">
+        <div class="card-head">🔔 Renewals due soon</div>
+        ${[
+          {
+            p: "Aarav Kumar",
+            plan: "Family Floater",
+            exp: "31 Mar 2026",
+            d: 45,
+          },
+          { p: "Neha Patel", plan: "Individual", exp: "15 Jul 2025", d: 15 },
+          {
+            p: "Vikram Shah",
+            plan: "Senior Citizen",
+            exp: "20 Jul 2025",
+            d: 20,
+          },
+          {
+            p: "Anita Joshi",
+            plan: "Family Floater",
+            exp: "5 Aug 2025",
+            d: 35,
+          },
+        ]
+          .map(
+            (
+              r,
+            ) => `<div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:.5px solid var(--border);">
+          <div style="flex:1;"><div style="font-size:13px;font-weight:500;">${r.p}</div><div style="font-size:11px;color:var(--text3);">${r.plan} · Exp: ${r.exp}</div></div>
+          <span class="badge ${r.d < 20 ? "b-red" : r.d < 30 ? "b-amber" : "b-blue"}">${r.d}d left</span>
+        </div>`,
+          )
+          .join("")}
+        <div style="margin-top:10px;"><button class="btn btn-primary btn-sm" style="width:100%;">📧 Send renewal reminders</button></div>
+      </div>
+    </div>
+  </div>
+</div>`,
+
+            Claims: `
+<div style="max-width:700px;margin:0 auto;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div style="font-size:18px;font-weight:700;">Claims management</div>
+    <div style="display:flex;gap:8px;"><input class="inp" placeholder="Search claims…" style="width:200px;"><button class="btn btn-ghost btn-sm">Filter</button></div>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="metric"><div class="val">47</div><div class="lbl">Open</div></div>
+    <div class="metric"><div class="val">12</div><div class="lbl">Urgent</div></div>
+    <div class="metric"><div class="val">134</div><div class="lbl">Approved MTD</div></div>
+    <div class="metric"><div class="val">8</div><div class="lbl">Rejected</div></div>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Claim ID</th><th>Patient</th><th>Type</th><th>Amount</th><th>Documents</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        ${[
+          {
+            id: "CLM-004821",
+            p: "Aarav Kumar",
+            type: "Hospitalisation",
+            amt: "₹1,24,000",
+            docs: "5 docs ✓",
+            s: "Under review",
+          },
+          {
+            id: "CLM-004820",
+            p: "Meera Singh",
+            type: "Day care",
+            amt: "₹12,500",
+            docs: "3 docs ✓",
+            s: "Processing",
+          },
+          {
+            id: "CLM-004818",
+            p: "Arun Nair",
+            type: "Surgery",
+            amt: "₹2,80,000",
+            docs: "8 docs ✓",
+            s: "Under review",
+          },
+          {
+            id: "CLM-004815",
+            p: "Priya Joshi",
+            type: "OPD",
+            amt: "₹4,500",
+            docs: "2 docs ✓",
+            s: "Approved",
+          },
+          {
+            id: "CLM-004810",
+            p: "Rajesh Sharma",
+            type: "Hospitalisation",
+            amt: "₹45,000",
+            docs: "4 docs ✓",
+            s: "Approved",
+          },
+        ]
+          .map(
+            (c) => `<tr>
+          <td style="font-family:var(--mono);font-size:11px;">${c.id}</td>
+          <td><strong>${c.p}</strong></td>
+          <td><span class="badge b-gray">${c.type}</span></td>
+          <td style="font-weight:600;">${c.amt}</td>
+          <td style="font-size:12px;color:var(--teal);">${c.docs}</td>
+          <td><span class="badge ${c.s === "Approved" ? "b-teal" : c.s === "Processing" ? "b-blue" : "b-amber"}">${c.s}</span></td>
+          <td><button class="btn btn-ghost btn-sm">Review</button></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</div>`,
+
+            "Policy Management": `
+<div style="max-width:700px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:16px;">Policy management</div>
+  <div style="display:flex;gap:8px;margin-bottom:14px;"><input class="inp" placeholder="Search by name, policy number, phone…" style="flex:1;"><button class="btn btn-primary">Search</button></div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Policy no.</th><th>Policyholder</th><th>Plan</th><th>Coverage</th><th>Expiry</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        ${[
+          {
+            no: "POL-887654",
+            name: "Aarav Kumar",
+            plan: "Family Floater ₹10L",
+            cov: "5 members",
+            exp: "31 Mar 2026",
+            s: "Active",
+          },
+          {
+            no: "POL-887655",
+            name: "Neha Patel",
+            plan: "Individual ₹5L",
+            cov: "Self",
+            exp: "15 Jul 2025",
+            s: "Renew soon",
+          },
+          {
+            no: "POL-887656",
+            name: "Vikram Shah",
+            plan: "Senior Citizen ₹3L",
+            cov: "Self + Spouse",
+            exp: "20 Jul 2025",
+            s: "Renew soon",
+          },
+          {
+            no: "POL-887657",
+            name: "Anita Joshi",
+            plan: "Family Floater ₹15L",
+            cov: "4 members",
+            exp: "5 Aug 2025",
+            s: "Active",
+          },
+        ]
+          .map(
+            (p) => `<tr>
+          <td style="font-family:var(--mono);font-size:11px;">${p.no}</td>
+          <td><strong>${p.name}</strong></td>
+          <td style="font-size:12px;">${p.plan}</td>
+          <td style="font-size:12px;color:var(--text2);">${p.cov}</td>
+          <td style="color:var(--text3);">${p.exp}</td>
+          <td><span class="badge ${p.s === "Active" ? "b-teal" : "b-amber"}">${p.s}</span></td>
+          <td><button class="btn btn-ghost btn-sm">Manage</button></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</div>`,
+
+            Marketplace: `
+<div style="max-width:640px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Insurance marketplace</div>
+  <div style="font-size:13px;color:var(--text2);margin-bottom:20px;">Manage your product listings shown to Health Passport users.</div>
+  <div class="card" style="background:var(--amber-lt);border-color:var(--amber);">
+    <div style="font-size:13px;color:var(--amber-dk);">📊 This month's marketplace performance: <strong>1,240 views</strong> · <strong>89 quote requests</strong> · <strong>34 policies sold</strong> · Revenue: <strong>₹8.4L commissions</strong></div>
+  </div>
+  <div style="display:grid;gap:12px;">
+    ${[
+      {
+        name: "Family Floater — Standard",
+        sum: "₹10L",
+        prem: "From ₹14,000/yr",
+        views: 540,
+        quotes: 38,
+        status: "Active",
+      },
+      {
+        name: "Individual Health Guard",
+        sum: "₹5L",
+        prem: "From ₹7,500/yr",
+        views: 380,
+        quotes: 29,
+        status: "Active",
+      },
+      {
+        name: "Senior Citizen Plan",
+        sum: "₹3L",
+        prem: "From ₹22,000/yr",
+        views: 180,
+        quotes: 12,
+        status: "Active",
+      },
+      {
+        name: "Super Top-Up Plus",
+        sum: "₹50L",
+        prem: "From ₹9,800/yr",
+        views: 140,
+        quotes: 10,
+        status: "Draft",
+      },
+    ]
+      .map(
+        (p) => `
+    <div class="card" style="padding:14px 16px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+        <div style="font-size:14px;font-weight:600;">${p.name}</div>
+        <span class="badge ${p.status === "Active" ? "b-teal" : "b-gray"}">${p.status}</span>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;font-size:12px;">
+        <div><div style="color:var(--text3);">Sum insured</div><div style="font-weight:600;">${p.sum}</div></div>
+        <div><div style="color:var(--text3);">Premium</div><div style="font-weight:600;">${p.prem}</div></div>
+        <div><div style="color:var(--text3);">Views</div><div style="font-weight:600;">${p.views}</div></div>
+        <div><div style="color:var(--text3);">Quotes</div><div style="font-weight:600;">${p.quotes}</div></div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:6px;"><button class="btn btn-ghost btn-sm">Edit listing</button><button class="btn btn-ghost btn-sm">${p.status === "Active" ? "Pause" : "Publish"}</button></div>
+    </div>`,
+      )
+      .join("")}
+  </div>
+</div>`,
+
+            Analytics: `
+<div style="max-width:640px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:16px;">Analytics & insights</div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="metric"><div class="val">8,240</div><div class="lbl">Active policies</div></div>
+    <div class="metric"><div class="val">94.2%</div><div class="lbl">Renewal rate</div></div>
+    <div class="metric"><div class="val">₹2.4Cr</div><div class="lbl">Claims MTD</div></div>
+    <div class="metric"><div class="val">62%</div><div class="lbl">Digital claims</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head">📈 New policies — last 6 months</div>
+    <div style="display:flex;align-items:flex-end;gap:8px;height:100px;padding:0 4px;margin-bottom:8px;">
+      ${[
+        { m: "Jan", v: 124 },
+        { m: "Feb", v: 98 },
+        { m: "Mar", v: 156 },
+        { m: "Apr", v: 143 },
+        { m: "May", v: 178 },
+        { m: "Jun", v: 134 },
+      ]
+        .map(
+          (b) => `
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+        <div style="font-size:9px;font-weight:600;color:var(--amber-dk);">${b.v}</div>
+        <div style="width:100%;height:${b.v / 2}px;border-radius:4px 4px 0 0;background:var(--amber);"></div>
+        <div style="font-size:9px;color:var(--text3);">${b.m}</div>
+      </div>`,
+        )
+        .join("")}
+    </div>
+  </div>
+</div>`,
+          },
+        },
+
+        /* ══════════ ADMIN PORTAL ══════════ */
+        admin: {
+          name: "Admin Portal",
+          badge: "⚙️ Super Admin",
+          badgeClass: "b-red",
+          tabs: [
+            "Dashboard",
+            "User Management",
+            "Institutions",
+            "Audit Logs",
+            "Analytics",
+          ],
+          screens: {
+            Dashboard: `
+<div class="portal-layout">
+  <div class="portal-sidebar">
+    <div style="padding:12px 16px 8px;font-size:14px;font-weight:600;color:var(--red-dk);">⚙️ Admin</div>
+    <div style="padding:0 16px 12px;font-size:11px;color:var(--text3);">Health Passport Platform</div>
+    <div class="ps-menu-label">Platform</div>
+    <div class="ps-menu-item active"><span class="mi-icon">📊</span>Dashboard</div>
+    <div class="ps-menu-item"><span class="mi-icon">👤</span>Users</div>
+    <div class="ps-menu-item"><span class="mi-icon">🏛</span>Institutions</div>
+    <div class="ps-menu-item"><span class="mi-icon">🔒</span>Audit logs</div>
+    <div class="ps-menu-item"><span class="mi-icon">📈</span>Analytics</div>
+    <div class="ps-menu-label">System</div>
+    <div class="ps-menu-item"><span class="mi-icon">🚩</span>Feature flags</div>
+    <div class="ps-menu-item"><span class="mi-icon">🤖</span>AI job queue</div>
+    <div class="ps-menu-item"><span class="mi-icon">⚙️</span>Settings</div>
+  </div>
+  <div class="portal-content">
+    <div style="font-size:20px;font-weight:700;margin-bottom:20px;">Platform dashboard</div>
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="metric"><div class="val" style="color:var(--blue);">48,240</div><div class="lbl">Total users</div><div class="chg" style="color:var(--teal);">▲ +1,240 this month</div></div>
+      <div class="metric"><div class="val" style="color:var(--teal);">342</div><div class="lbl">Hospitals</div><div class="chg" style="color:var(--teal);">▲ +14 this month</div></div>
+      <div class="metric"><div class="val" style="color:var(--purple);">204</div><div class="lbl">Labs</div><div class="chg" style="color:var(--teal);">▲ +8</div></div>
+      <div class="metric"><div class="val" style="color:var(--amber);">18</div><div class="lbl">Insurers</div></div>
+    </div>
+    <div class="grid-4" style="margin-bottom:20px;">
+      <div class="metric"><div class="val">8,420</div><div class="lbl">QR scans today</div></div>
+      <div class="metric"><div class="val">2.4M</div><div class="lbl">Total records</div></div>
+      <div class="metric"><div class="val">99.8%</div><div class="lbl">API uptime (30d)</div></div>
+      <div class="metric"><div class="val">142ms</div><div class="lbl">Avg response time</div></div>
+    </div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">📈 User growth (last 6 months)</div>
+        <div style="display:flex;align-items:flex-end;gap:6px;height:90px;padding:0 4px;margin-bottom:8px;">
+          ${[
+            { m: "Jan", v: 32 },
+            { m: "Feb", v: 35 },
+            { m: "Mar", v: 38 },
+            { m: "Apr", v: 42 },
+            { m: "May", v: 46 },
+            { m: "Jun", v: 48 },
+          ]
+            .map(
+              (b) => `
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;">
+            <div style="font-size:9px;font-weight:600;color:var(--blue-dk);">${b.v}K</div>
+            <div style="width:100%;height:${b.v * 1.8}px;border-radius:4px 4px 0 0;background:var(--blue);"></div>
+            <div style="font-size:9px;color:var(--text3);">${b.m}</div>
+          </div>`,
+            )
+            .join("")}
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head">🔔 System alerts</div>
+        ${[
+          {
+            type: "info",
+            title: "OCR queue: 24 jobs pending",
+            time: "2 min ago",
+            col: "blue",
+          },
+          {
+            type: "warn",
+            title: 'Hospital "Fortis Kalyan" — pending verification',
+            time: "1 hr ago",
+            col: "amber",
+          },
+          {
+            type: "ok",
+            title: "Database backup completed (ap-south-1)",
+            time: "2 hr ago",
+            col: "teal",
+          },
+          {
+            type: "warn",
+            title: "Rate limit hit: IP 103.x.x.x (resolved)",
+            time: "4 hr ago",
+            col: "amber",
+          },
+        ]
+          .map(
+            (a) => `<div class="notif">
+          <div class="notif-dot" style="background:var(--${a.col});"></div>
+          <div><div class="notif-title">${a.title}</div><div class="notif-time" style="font-size:11px;color:var(--text3);">${a.time}</div></div>
+        </div>`,
+          )
+          .join("")}
+      </div>
+    </div>
+  </div>
+</div>`,
+
+            "User Management": `
+<div style="max-width:800px;margin:0 auto;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div style="font-size:18px;font-weight:700;">User management</div>
+    <div style="display:flex;gap:8px;"><input class="inp" placeholder="Search users…" style="width:200px;"><button class="btn btn-ghost btn-sm">Export</button></div>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="metric"><div class="val">48,240</div><div class="lbl">Total</div></div>
+    <div class="metric"><div class="val">2,412</div><div class="lbl">Premium</div></div>
+    <div class="metric"><div class="val">124</div><div class="lbl">New today</div></div>
+    <div class="metric"><div class="val">12</div><div class="lbl">Flagged</div></div>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th>User</th><th>HP ID</th><th>Phone</th><th>Plan</th><th>Records</th><th>Last active</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        ${[
+          {
+            name: "Aarav Kumar",
+            id: "HP-2024-00112",
+            ph: "+91 98765 00000",
+            plan: "Health+",
+            rec: 14,
+            last: "Today",
+            s: "Active",
+          },
+          {
+            name: "Neha Patel",
+            id: "HP-2024-00113",
+            ph: "+91 87654 11111",
+            plan: "Free",
+            rec: 5,
+            last: "Yesterday",
+            s: "Active",
+          },
+          {
+            name: "Suresh Rao",
+            id: "HP-2024-00114",
+            ph: "+91 76543 22222",
+            plan: "Family",
+            rec: 22,
+            last: "Today",
+            s: "Active",
+          },
+          {
+            name: "Priya Mehta",
+            id: "HP-2024-00115",
+            ph: "+91 65432 33333",
+            plan: "Free",
+            rec: 2,
+            last: "5 Jun",
+            s: "Inactive",
+          },
+        ]
+          .map(
+            (u) => `<tr>
+          <td><div style="display:flex;align-items:center;gap:8px;"><div class="ava" style="width:28px;height:28px;font-size:10px;background:var(--blue-lt);color:var(--blue-dk);">${u.name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")}</div><strong>${u.name}</strong></div></td>
+          <td style="font-family:var(--mono);font-size:11px;">${u.id}</td>
+          <td style="font-size:12px;">${u.ph}</td>
+          <td><span class="badge ${u.plan === "Health+" ? "b-blue" : u.plan === "Family" ? "b-teal" : "b-gray"}">${u.plan}</span></td>
+          <td style="text-align:center;">${u.rec}</td>
+          <td style="color:var(--text3);font-size:12px;">${u.last}</td>
+          <td><span class="status-dot ${u.s === "Active" ? "sd-green" : "sd-gray"}" style="margin-right:5px;"></span>${u.s}</td>
+          <td><button class="btn btn-ghost btn-sm">View</button></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</div>`,
+
+            "Audit Logs": `
+<div style="max-width:800px;margin:0 auto;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div style="font-size:18px;font-weight:700;">Audit logs</div>
+    <div style="display:flex;gap:8px;"><input class="inp" placeholder="Filter by user, action, IP…" style="width:200px;"><button class="btn btn-ghost btn-sm">Export CSV</button></div>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Time</th><th>Actor</th><th>Role</th><th>Action</th><th>Resource</th><th>IP</th><th>Result</th></tr></thead>
+      <tbody>
+        ${[
+          {
+            t: "10:34:22",
+            a: "Dr. R. Iyer",
+            role: "Hospital",
+            action: "VIEW_RECORDS",
+            res: "User HP-00112",
+            ip: "103.24.x.x",
+            ok: true,
+          },
+          {
+            t: "10:32:11",
+            a: "Apollo Hospital",
+            role: "Institution",
+            action: "UPLOAD_REPORT",
+            res: "Record REC-44821",
+            ip: "103.24.x.x",
+            ok: true,
+          },
+          {
+            t: "10:30:05",
+            a: "Aarav Kumar",
+            role: "Patient",
+            action: "QR_ROTATE",
+            res: "QR QR-00112",
+            ip: "49.35.x.x",
+            ok: true,
+          },
+          {
+            t: "10:28:44",
+            a: "Paramedic PD-4421",
+            role: "Paramedic",
+            action: "OTP_ACCESS",
+            res: "QR QR-00200",
+            ip: "157.47.x.x",
+            ok: true,
+          },
+          {
+            t: "10:15:12",
+            a: "Unknown",
+            role: "Public",
+            action: "QR_SCAN_L1",
+            res: "QR QR-00112",
+            ip: "103.20.x.x",
+            ok: true,
+          },
+          {
+            t: "09:58:03",
+            a: "IP 103.x.x.x",
+            role: "Unknown",
+            action: "LOGIN_ATTEMPT",
+            res: "—",
+            ip: "103.x.x.x",
+            ok: false,
+          },
+        ]
+          .map(
+            (l) => `<tr>
+          <td style="font-family:var(--mono);font-size:11px;">${l.t}</td>
+          <td style="font-size:12px;"><strong>${l.a}</strong></td>
+          <td><span class="badge b-gray" style="font-size:10px;">${l.role}</span></td>
+          <td style="font-family:var(--mono);font-size:11px;color:var(--blue-dk);">${l.action}</td>
+          <td style="font-size:12px;color:var(--text2);">${l.res}</td>
+          <td style="font-family:var(--mono);font-size:11px;color:var(--text3);">${l.ip}</td>
+          <td><span class="status-dot ${l.ok ? "sd-green" : "sd-red"}" style="margin-right:4px;"></span><span style="font-size:12px;">${l.ok ? "OK" : "BLOCKED"}</span></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</div>`,
+
+            Institutions: `
+<div style="max-width:760px;margin:0 auto;">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+    <div style="font-size:18px;font-weight:700;">Institution management</div>
+    <button class="btn btn-primary btn-sm">+ Onboard institution</button>
+  </div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="metric"><div class="val">342</div><div class="lbl">Hospitals</div></div>
+    <div class="metric"><div class="val">204</div><div class="lbl">Labs</div></div>
+    <div class="metric"><div class="val">18</div><div class="lbl">Insurers</div></div>
+    <div class="metric"><div class="val">3</div><div class="lbl">Pending approval</div></div>
+  </div>
+  <div class="card">
+    <table>
+      <thead><tr><th>Institution</th><th>Type</th><th>City</th><th>Plan</th><th>Reports</th><th>Verified</th><th>Status</th><th>Action</th></tr></thead>
+      <tbody>
+        ${[
+          {
+            name: "Apollo Hospitals",
+            type: "Hospital",
+            city: "Mumbai",
+            plan: "Hospital",
+            reps: 4240,
+            v: true,
+            s: "Active",
+          },
+          {
+            name: "Metropolis Labs",
+            type: "Lab",
+            city: "Mumbai",
+            plan: "Lab Pro",
+            reps: 12400,
+            v: true,
+            s: "Active",
+          },
+          {
+            name: "Star Health Insurance",
+            type: "Insurer",
+            city: "Chennai",
+            plan: "Partner",
+            reps: 0,
+            v: true,
+            s: "Active",
+          },
+          {
+            name: "Fortis Healthcare Kalyan",
+            type: "Hospital",
+            city: "Thane",
+            plan: "Hospital",
+            reps: 0,
+            v: false,
+            s: "Pending",
+          },
+          {
+            name: "SRL Diagnostics",
+            type: "Lab",
+            city: "Delhi",
+            plan: "Lab Pro",
+            reps: 8800,
+            v: true,
+            s: "Active",
+          },
+        ]
+          .map(
+            (i) => `<tr>
+          <td><strong>${i.name}</strong></td>
+          <td><span class="badge ${i.type === "Hospital" ? "b-teal" : i.type === "Lab" ? "b-purple" : "b-amber"}">${i.type}</span></td>
+          <td style="font-size:12px;color:var(--text2);">${i.city}</td>
+          <td style="font-size:12px;">${i.plan}</td>
+          <td style="text-align:center;">${i.reps > 0 ? i.reps.toLocaleString() : "—"}</td>
+          <td style="text-align:center;">${i.v ? '<span class="badge b-teal">✓</span>' : '<span class="badge b-amber">Pending</span>'}</td>
+          <td><span class="status-dot ${i.s === "Active" ? "sd-green" : "sd-amber"}" style="margin-right:5px;"></span>${i.s}</td>
+          <td><button class="btn btn-ghost btn-sm">${i.s === "Pending" ? "Approve" : "Manage"}</button></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+</div>`,
+
+            Analytics: `
+<div style="max-width:700px;margin:0 auto;">
+  <div style="font-size:18px;font-weight:700;margin-bottom:16px;">Platform analytics</div>
+  <div class="grid-4" style="margin-bottom:16px;">
+    <div class="metric"><div class="val">48.2K</div><div class="lbl">Total users</div><div class="chg" style="color:var(--teal);">▲ 2.6% MoM</div></div>
+    <div class="metric"><div class="val">5.2%</div><div class="lbl">Premium rate</div><div class="chg" style="color:var(--teal);">▲ +0.3%</div></div>
+    <div class="metric"><div class="val">₹4.2Cr</div><div class="lbl">MRR</div><div class="chg" style="color:var(--teal);">▲ 8.4%</div></div>
+    <div class="metric"><div class="val">99.8%</div><div class="lbl">Uptime (30d)</div></div>
+  </div>
+  <div class="card">
+    <div class="card-head">📊 Revenue by stream (this month)</div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      ${[
+        {
+          src: "B2B Hospital & Lab subscriptions",
+          amt: "₹1,84,000",
+          pct: 44,
+          col: "teal",
+        },
+        {
+          src: "Individual premium subscriptions",
+          amt: "₹1,02,000",
+          pct: 24,
+          col: "blue",
+        },
+        {
+          src: "Insurance marketplace commissions",
+          amt: "₹84,000",
+          pct: 20,
+          col: "amber",
+        },
+        {
+          src: "Enterprise & API licensing",
+          amt: "₹50,000",
+          pct: 12,
+          col: "purple",
+        },
+      ]
+        .map(
+          (r) => `<div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;">
+          <span>${r.src}</span><span style="font-weight:600;">${r.amt}</span>
+        </div>
+        <div class="pbar-wrap" style="height:8px;"><div class="pbar" style="width:${r.pct * 2.2}%;background:var(--${r.col});"></div></div>
+      </div>`,
+        )
+        .join("")}
+    </div>
+  </div>
+</div>`,
+          },
+        },
+
+        /* ══════════ EMERGENCY QR PAGE ══════════ */
+        qr: {
+          name: "Emergency QR Access",
+          badge: "🚨 Emergency",
+          badgeClass: "b-red",
+          tabs: ["Public view", "Paramedic OTP", "Hospital view"],
+          screens: {
+            "Public view": `
+<div style="max-width:420px;margin:0 auto;">
+  <div style="background:var(--red);color:#fff;border-radius:var(--r-lg);padding:14px 18px;margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+    <div style="font-size:24px;">🚨</div>
+    <div><div style="font-size:14px;font-weight:700;">EMERGENCY MEDICAL INFORMATION</div><div style="font-size:12px;opacity:.8;">Health Passport · Scan #QR-2024-00112</div></div>
+  </div>
+  <div class="card" style="margin-bottom:12px;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:14px;">
+      <div class="ava" style="width:56px;height:56px;font-size:20px;background:var(--blue-lt);color:var(--blue-dk);">AK</div>
+      <div><div style="font-size:18px;font-weight:700;">Aarav Kumar</div><div style="font-size:13px;color:var(--text2);">37 years · Male · HP-2024-00112</div></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+      <div style="background:var(--red-lt);border-radius:var(--r);padding:12px;text-align:center;">
+        <div style="font-size:11px;color:var(--red-dk);font-weight:600;text-transform:uppercase;margin-bottom:4px;">Blood group</div>
+        <div style="font-size:24px;font-weight:800;color:var(--red-dk);">B+</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px;">Institution verified ✓</div>
+      </div>
+      <div style="background:var(--amber-lt);border-radius:var(--r);padding:12px;text-align:center;">
+        <div style="font-size:11px;color:var(--amber-dk);font-weight:600;text-transform:uppercase;margin-bottom:4px;">Allergy</div>
+        <div style="font-size:16px;font-weight:700;color:var(--amber-dk);">Penicillin</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px;">+ Sulfa drugs</div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="border-left:4px solid var(--red);">
+    <div style="font-size:13px;font-weight:600;margin-bottom:10px;">📞 Emergency contacts</div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:.5px solid var(--border);">
+      <div style="font-size:20px;">👩</div>
+      <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Priya Kumar</div><div style="font-size:12px;color:var(--text2);">Spouse · Primary contact</div></div>
+      <a href="tel:+919876500001" style="text-decoration:none;"><button class="btn btn-danger btn-sm">📞 Call now</button></a>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;padding:8px 0;">
+      <div style="font-size:20px;">👴</div>
+      <div style="flex:1;"><div style="font-size:14px;font-weight:600;">Ramesh Kumar</div><div style="font-size:12px;color:var(--text2);">Father</div></div>
+      <a href="tel:+919876500002" style="text-decoration:none;"><button class="btn btn-ghost btn-sm">📞 Call</button></a>
+    </div>
+  </div>
+  <div style="text-align:center;padding:16px;background:var(--bg2);border-radius:var(--r-lg);margin-top:12px;">
+    <div style="font-size:12px;color:var(--text2);margin-bottom:8px;">Are you a medical professional?</div>
+    <button class="btn btn-primary" onclick="document.querySelector('.ps-screen-tabs button:nth-child(2)').click()">🚑 Request paramedic access (OTP)</button>
+  </div>
+</div>`,
+
+            "Paramedic OTP": `
+<div style="max-width:420px;margin:0 auto;">
+  <div style="background:var(--amber);color:#fff;border-radius:var(--r-lg);padding:14px 18px;margin-bottom:16px;">
+    <div style="font-size:14px;font-weight:700;">🚑 PARAMEDIC / FIRST RESPONDER ACCESS</div>
+    <div style="font-size:12px;opacity:.8;margin-top:3px;">OTP will be sent to patient's emergency contact</div>
+  </div>
+  <div class="card">
+    <div class="card-head">Step 1 — Verify identity</div>
+    <div class="form-group" style="margin-bottom:10px;"><label class="form-label">Badge / Employee ID</label><input class="inp" placeholder="e.g. PD-4421 or EMP-00234"></div>
+    <div class="form-group" style="margin-bottom:10px;"><label class="form-label">Organisation</label><input class="inp" placeholder="e.g. Mumbai Fire Brigade / MMRDA Ambulance"></div>
+    <div class="form-group" style="margin-bottom:14px;"><label class="form-label">Designation</label><select class="inp"><option>Paramedic</option><option>EMT</option><option>Fire Fighter</option><option>Police Officer</option></select></div>
+    <button class="btn btn-primary" style="width:100%;">📱 Send OTP to emergency contact</button>
+  </div>
+  <div class="card" style="border-left:4px solid var(--amber);">
+    <div style="font-size:13px;font-weight:600;margin-bottom:10px;color:var(--amber-dk);">⏱ OTP sent to Priya Kumar (+91 98765 ****)</div>
+    <div class="form-group" style="margin-bottom:12px;"><label class="form-label">Enter 6-digit OTP</label>
+      <div style="display:flex;gap:6px;">
+        ${[1, 2, 3, 4, 5, 6].map((_, i) => `<input class="inp" maxlength="1" style="text-align:center;width:40px;padding:8px 4px;font-size:18px;font-weight:700;">`).join("")}
+      </div>
+    </div>
+    <button class="btn btn-primary" style="width:100%;background:var(--amber);">✅ Verify OTP & access records</button>
+    <div style="text-align:center;margin-top:8px;font-size:12px;color:var(--text3);">OTP valid for 5 minutes · Max 3 attempts</div>
+  </div>
+  <div class="card" style="background:var(--blue-lt);">
+    <div style="font-size:13px;font-weight:600;color:var(--blue-dk);margin-bottom:10px;">✅ OTP verified — Paramedic view unlocked (1 hr)</div>
+    <div style="display:grid;gap:6px;font-size:13px;">
+      <div><span style="color:var(--text3);">Chronic diseases:</span> <strong>Type 2 Diabetes (since 2022)</strong></div>
+      <div><span style="color:var(--text3);">Current medications:</span> <strong>Metformin 500mg (2x daily), Amlodipine 5mg</strong></div>
+      <div><span style="color:var(--text3);">Insurance:</span> <strong>Star Health — ₹10L · Policy POL-887654 · Active ✓</strong></div>
+      <div><span style="color:var(--text3);">Treating doctor:</span> <strong>Dr. Priya Sharma, Apollo Andheri · +91 22-xxxx-xxxx</strong></div>
+      <div><span style="color:var(--text3);">Last hospitalisation:</span> <strong>Nov 2023 · Apollo Hospital</strong></div>
+    </div>
+    <div style="margin-top:10px;font-size:11px;color:var(--text3);">⚠️ Access logged. Patient and emergency contact will be notified. Session expires in 58 minutes.</div>
+  </div>
+</div>`,
+
+            "Hospital view": `
+<div style="max-width:600px;margin:0 auto;">
+  <div style="background:var(--teal);color:#fff;border-radius:var(--r-lg);padding:14px 18px;margin-bottom:16px;">
+    <div style="font-size:14px;font-weight:700;">🏥 HOSPITAL AUTHORISED ACCESS — Full medical records</div>
+    <div style="font-size:12px;opacity:.8;margin-top:3px;">Apollo Hospital, Andheri · Consent: Active · Dr. R. Iyer</div>
+  </div>
+  <div class="card" style="margin-bottom:12px;">
+    <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;">
+      <div class="ava" style="width:56px;height:56px;font-size:20px;background:var(--blue-lt);color:var(--blue-dk);">AK</div>
+      <div style="flex:1;">
+        <div style="font-size:18px;font-weight:700;margin-bottom:4px;">Aarav Kumar</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:13px;">
+          <span>DOB: 14 Mar 1988</span><span>Blood: <strong>B+</strong></span><span>Allergy: <strong>Penicillin</strong></span>
+        </div>
+        <div style="display:flex;gap:6px;margin-top:6px;flex-wrap:wrap;">
+          <span class="badge b-teal">Diabetes T2</span><span class="badge b-blue">Hypertension</span><span class="badge b-green">Insurance active</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-2" style="margin-bottom:12px;">
+    <div class="card" style="padding:14px;">
+      <div style="font-size:13px;font-weight:600;margin-bottom:8px;">🩺 Active diagnoses</div>
+      <div style="font-size:12px;display:flex;flex-direction:column;gap:4px;">
+        <div>• Type 2 Diabetes Mellitus (2022) — Inst. verified</div>
+        <div>• Essential Hypertension (2021) — Inst. verified</div>
+        <div>• Vitamin D deficiency (2024) — Doc. verified</div>
+      </div>
+    </div>
+    <div class="card" style="padding:14px;">
+      <div style="font-size:13px;font-weight:600;margin-bottom:8px;">💊 Current medications</div>
+      <div style="font-size:12px;display:flex;flex-direction:column;gap:4px;">
+        <div>• Metformin 500mg — twice daily after meals</div>
+        <div>• Amlodipine 5mg — once daily (morning)</div>
+        <div>• Vitamin D3 60K IU — weekly</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-head">📋 Recent reports (institution view)</div>
+    <table>
+      <thead><tr><th>Report</th><th>Date</th><th>Source</th><th>Trust</th><th>Action</th></tr></thead>
+      <tbody>
+        ${[
+          { r: "CBC Report", d: "12 Jun 2025", src: "Metropolis Labs", t: 3 },
+          { r: "Chest X-Ray", d: "3 May 2025", src: "Apollo Radiology", t: 3 },
+          { r: "HbA1c", d: "18 Apr 2025", src: "Dr. Lal PathLabs", t: 3 },
+          {
+            r: "Metformin Rx",
+            d: "1 Apr 2025",
+            src: "Dr. P. Sharma, Apollo",
+            t: 3,
+          },
+          {
+            r: "Discharge Summary",
+            d: "Nov 2023",
+            src: "Apollo Hospital",
+            t: 3,
+          },
+        ]
+          .map(
+            (r) => `<tr>
+          <td><strong>${r.r}</strong></td>
+          <td style="color:var(--text3);">${r.d}</td>
+          <td style="font-size:12px;color:var(--text2);">${r.src}</td>
+          <td><span class="trust-chip trust-${r.t}">✓ Inst.</span></td>
+          <td><button class="btn btn-ghost btn-sm">Open</button></td>
+        </tr>`,
+          )
+          .join("")}
+      </tbody>
+    </table>
+  </div>
+  <div style="text-align:center;padding:12px;background:var(--teal-lt);border-radius:var(--r-lg);font-size:12px;color:var(--teal-dk);">
+    🔒 This access session has been logged. Patient will be notified. &nbsp;·&nbsp; <span style="font-weight:600;">Upload report for this patient →</span>
+  </div>
+</div>`,
+          },
+        },
+      };
+
+      /* ══ CORE LOGIC ══ */
+      let currentPortal = null;
+
+      function openPortal(id) {
+        currentPortal = portals[id];
+        document.getElementById("launcher").style.display = "none";
+        const shell = document.getElementById("portal-shell");
+        shell.style.display = "block";
+        document.getElementById("ps-name").textContent = currentPortal.name;
+        const badge = document.getElementById("ps-badge");
+        badge.textContent = currentPortal.badge;
+        badge.className = "ps-portal-badge badge " + currentPortal.badgeClass;
+
+        // Build tabs
+        const tabs = document.getElementById("ps-tabs");
+        tabs.innerHTML = currentPortal.tabs
+          .map(
+            (t, i) =>
+              `<button onclick="showScreen(this,'${t}')" class="${i === 0 ? "active" : ""}">${t}</button>`,
+          )
+          .join("");
+        // Color active tab
+        colorActiveTabs(id);
+
+        // Show first screen
+        const firstScreen = currentPortal.tabs[0];
+        document.getElementById("ps-content").innerHTML =
+          `<div id="scr" class="screen active">${currentPortal.screens[firstScreen]}</div>`;
+
+        // Build QR if on QR screen
+        setTimeout(buildQR, 50);
+        window.scrollTo(0, 0);
+      }
+
+      function colorActiveTabs(id) {
+        const colors = {
+          mobile: "#185FA5",
+          hospital: "#0F6E56",
+          lab: "#534AB7",
+          insurance: "#BA7517",
+          admin: "#A32D2D",
+          qr: "#A32D2D",
+        };
+        document
+          .querySelectorAll(".ps-screen-tabs button.active")
+          .forEach((b) => {
+            b.style.background = colors[id] || "#185FA5";
+          });
+        // Store for future clicks
+        document.getElementById("ps-tabs").dataset.portal = id;
+      }
+
+      function showScreen(btn, name) {
+        document.querySelectorAll(".ps-screen-tabs button").forEach((b) => {
+          b.classList.remove("active");
+          b.style.background = "";
+        });
+        btn.classList.add("active");
+        const id = document.getElementById("ps-tabs").dataset.portal;
+        const colors = {
+          mobile: "#185FA5",
+          hospital: "#0F6E56",
+          lab: "#534AB7",
+          insurance: "#BA7517",
+          admin: "#A32D2D",
+          qr: "#A32D2D",
+        };
+        btn.style.background = colors[id] || "#185FA5";
+        btn.style.color = "#fff";
+        btn.style.borderColor = "transparent";
+
+        const content = document.getElementById("ps-content");
+        content.innerHTML = `<div id="scr" class="screen active">${currentPortal.screens[name] || '<p style="padding:40px;text-align:center;color:var(--text3);">Screen coming soon…</p>'}</div>`;
+        setTimeout(buildQR, 50);
+        window.scrollTo(0, 0);
+      }
+
+      function backToLauncher() {
+        document.getElementById("portal-shell").style.display = "none";
+        document.getElementById("launcher").style.display = "flex";
+      }
+
+      function buildQR() {
+        const grids = document.querySelectorAll(".qr-grid");
+        grids.forEach((grid) => {
+          if (grid.children.length) return;
+          const pat = [
+            1, 0, 1, 1, 0, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1,
+            0, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0, 0,
+            1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0,
+            1, 0, 1, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 1,
+            0, 1, 1, 0, 1, 0, 1, 1,
+          ];
+          pat.forEach((b) => {
+            const c = document.createElement("div");
+            c.className = b ? "qr-b" : "qr-w";
+            grid.appendChild(c);
+          });
+        });
+      }
+
+      // Style active tab buttons initially
+      document.querySelectorAll(".ps-screen-tabs button").forEach((b) => {
+        b.addEventListener("click", function () {
+          const id = document.getElementById("ps-tabs").dataset.portal;
+          const colors = {
+            mobile: "#185FA5",
+            hospital: "#0F6E56",
+            lab: "#534AB7",
+            insurance: "#BA7517",
+            admin: "#A32D2D",
+            qr: "#A32D2D",
+          };
+          if (this.classList.contains("active"))
+            this.style.background = colors[id] || "#185FA5";
+        });
+      });
+    </script>
+  </body>
+</html>
