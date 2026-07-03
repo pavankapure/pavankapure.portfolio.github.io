@@ -26,20 +26,6 @@
     />
     <link rel="stylesheet" href="assets/css/custom.css" />
     <style></style>
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-0WBL6YT3QT"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      gtag("config", "G-0WBL6YT3QT");
-    </script>
   </head>
   <body>
     <!-- NAVBAR -->
@@ -65,6 +51,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#ai-certifications">AI Certification</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#persona">Persona</a>
@@ -474,6 +463,73 @@
               <div class="bar-track">
                 <div class="bar-fill" data-w="68"></div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI CERTIFICATIONS -->
+    <section id="ai-certifications" style="background: var(--paper)">
+      <div class="container">
+        <div class="row mb-5">
+          <div class="col-lg-7">
+            <p class="eyebrow">Professional Growth</p>
+            <h2 class="sec-h">AI <em>Certifications</em></h2>
+            <div class="rule"></div>
+            <p class="lead-txt mb-4">
+              Actively mastering AI-driven design workflows to bridge the gap
+              between human creativity and machine efficiency.
+            </p>
+          </div>
+        </div>
+        <div class="row g-4">
+          <!-- Certification 1 -->
+          <div class="col-md-6 col-lg-3 fade-up">
+            <div class="skill-block h-100">
+              <div class="sk-icon"><i class="fas fa-brain"></i></div>
+              <h5 class="mb-2">AI for UI/UX Research & Design</h5>
+              <p class="small text-muted mb-2">Udemy &bull; Nov 2025</p>
+              <p class="small mb-0">
+                Specialized in leveraging AI for user research, data analysis,
+                and automated design iterations.
+              </p>
+            </div>
+          </div>
+          <!-- Certification 2 -->
+          <div class="col-md-6 col-lg-3 fade-up">
+            <div class="skill-block h-100">
+              <div class="sk-icon"><i class="fas fa-magic"></i></div>
+              <h5 class="mb-2">AI for UI and UX Designers</h5>
+              <p class="small text-muted mb-2">Udemy &bull; Nov 2025</p>
+              <p class="small mb-0">
+                Mastering "Design Smarter, Not Harder" methodologies using
+                generative AI tools.
+              </p>
+            </div>
+          </div>
+          <!-- Certification 3 -->
+          <div class="col-md-6 col-lg-3 fade-up">
+            <div class="skill-block h-100">
+              <div class="sk-icon"><i class="fas fa-terminal"></i></div>
+              <h5 class="mb-2">ChatGPT Prompt Engineering for UX</h5>
+              <p class="small text-muted mb-2">MSI &bull; Nov 2025</p>
+              <p class="small mb-0">
+                Expertise in crafting precise prompts to generate user flows,
+                copy, and structural layouts.
+              </p>
+            </div>
+          </div>
+          <!-- Certification 4 -->
+          <div class="col-md-6 col-lg-3 fade-up">
+            <div class="skill-block h-100">
+              <div class="sk-icon"><i class="fas fa-chart-line"></i></div>
+              <h5 class="mb-2">AI Business Leadership</h5>
+              <p class="small text-muted mb-2">MSI &bull; Nov 2025</p>
+              <p class="small mb-0">
+                Strategic implementation of AI technologies to lead digital
+                transformation in design teams.
+              </p>
             </div>
           </div>
         </div>
@@ -1388,34 +1444,6 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-lg-4 fade-up">
-            <div class="pj">
-              <div class="pj-img">
-                <!-- Unsplash royalty-free: laptop workspace -->
-                <img
-                  src="assets/images/health-passport.png"
-                  alt="Landing Page"
-                />
-              </div>
-              <div class="pj-body">
-                <div class="pj-tag">
-                  Full Working Health Passport application (AI)
-                </div>
-                <a
-                  href="./health_passport_ui.html"
-                  style="text-decoration: none"
-                >
-                  <h5>Landing Page Design</h5>
-                </a>
-                <p>
-                  High-converting landing page with trust signals and persuasive
-                  CTA hierarchy.
-                </p>
-                <span class="pill">HTML</span><span class="pill">CSS</span
-                ><span class="pill">JS</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -1445,11 +1473,16 @@
         </div>
         <div class="row g-5">
           <div class="col-lg-7">
-            <form id="contactForm">
+            <form
+              id="contactForm"
+              action="https://formspree.io/f/pavan951288@gmail.com"
+              method="POST"
+            >
               <div class="row g-3 mb-3">
                 <div class="col-sm-6">
                   <input
                     type="text"
+                    name="name"
                     class="form-control fc"
                     placeholder="Your Name"
                     required
@@ -1458,6 +1491,7 @@
                 <div class="col-sm-6">
                   <input
                     type="email"
+                    name="email"
                     class="form-control fc"
                     placeholder="Your Email"
                     required
@@ -1467,6 +1501,7 @@
               <div class="mb-3">
                 <input
                   type="text"
+                  name="subject"
                   class="form-control fc"
                   placeholder="Subject"
                   required
@@ -1474,6 +1509,7 @@
               </div>
               <div class="mb-3">
                 <textarea
+                  name="message"
                   class="form-control fc"
                   rows="6"
                   placeholder="Your Message"
@@ -1678,19 +1714,53 @@
       });
 
       // Contact form
-      document.getElementById("contactForm").addEventListener("submit", (e) => {
-        e.preventDefault();
-        const btn = e.target.querySelector(".btn-send");
-        const orig = btn.innerHTML;
-        btn.innerHTML = '<i class="fas fa-check me-2"></i> Message Sent!';
-        btn.style.background = "#25a160";
-        btn.style.borderColor = "#25a160";
-        setTimeout(() => {
-          btn.innerHTML = orig;
-          btn.style.background = "";
-          btn.style.borderColor = "";
-        }, 3500);
-      });
+      document
+        .getElementById("contactForm")
+        .addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const form = e.target;
+          const btn = form.querySelector(".btn-send");
+          const orig = btn.innerHTML;
+
+          // Show loading state
+          btn.innerHTML =
+            '<i class="fas fa-spinner fa-spin me-2"></i> Sending...';
+          btn.disabled = true;
+
+          try {
+            const response = await fetch(
+              "https://formspree.io/f/pavan951288@gmail.com",
+              {
+                method: "POST",
+                body: new FormData(form),
+                headers: {
+                  Accept: "application/json",
+                },
+              },
+            );
+
+            if (response.ok) {
+              btn.innerHTML = '<i class="fas fa-check me-2"></i> Message Sent!';
+              btn.style.background = "#25a160";
+              btn.style.borderColor = "#25a160";
+              form.reset();
+            } else {
+              throw new Error("Form submission failed");
+            }
+          } catch (error) {
+            btn.innerHTML =
+              '<i class="fas fa-exclamation-triangle me-2"></i> Error!';
+            btn.style.background = "#dc3545";
+            btn.style.borderColor = "#dc3545";
+          } finally {
+            setTimeout(() => {
+              btn.innerHTML = orig;
+              btn.style.background = "";
+              btn.style.borderColor = "";
+              btn.disabled = false;
+            }, 3500);
+          }
+        });
     </script>
   </body>
 </html>
